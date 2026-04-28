@@ -143,7 +143,7 @@
       "isOfficial": true,
       "sourceCode": "MHR",
       "sourceUrl": "https://broheim.net/downloads/warbands/official/Skaven.pdf",
-      "implementationStatus": "not_started"
+      "implementationStatus": "implemented"
     },
     {
       "id": "undead",

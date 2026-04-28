@@ -26,6 +26,7 @@ import {
   getAllowedEquipment,
   getAllowedFighterTypes,
   getAllowedSkills,
+  getAllowedSpecialRules,
   validateRoster
 } from "./rules/engine";
 import { rosterSchema } from "./rules/schemas";
@@ -690,6 +691,10 @@ function MemberCard({
   const specialRules = unique([...fighterType.specialRuleIds, ...member.specialRules])
     .map((id) => rulesDb.specialRules.find((rule) => rule.id === id))
     .filter(Boolean) as SpecialRule[];
+  const castableRules = specialRules.filter((rule) => Boolean(rule.validation.selectableAs));
+  const passiveRules = specialRules.filter((rule) => !rule.validation.selectableAs);
+  const castableOptions = getAllowedSpecialRules(member, roster, rulesDb);
+  const hasCastableChoices = castableRules.length > 0 || castableOptions.some((option) => option.allowed);
 
   return (
     <article className="member-card">
@@ -748,11 +753,17 @@ function MemberCard({
           <h3>Skills</h3>
           <SkillPicker roster={roster} member={member} onChange={onChange} onLookup={onLookup} />
         </section>
+        {hasCastableChoices && (
+          <section>
+            <h3>Prayers & Spells</h3>
+            <SpellPrayerPicker roster={roster} member={member} onChange={onChange} onLookup={onLookup} />
+          </section>
+        )}
         <section>
           <h3>Special Rules</h3>
           <div className="chip-list">
-            {specialRules.length ? (
-              specialRules.map((rule) => (
+            {passiveRules.length ? (
+              passiveRules.map((rule) => (
                 <button className="chip" key={rule.id} onClick={() => onLookup({ type: "specialRule", item: rule })}>
                   {rule.name}
                 </button>
@@ -925,6 +936,59 @@ function SkillPicker({
   );
 }
 
+function SpellPrayerPicker({
+  roster,
+  member,
+  onChange,
+  onLookup
+}: {
+  roster: Roster;
+  member: RosterMember;
+  onChange: (member: RosterMember) => void;
+  onLookup: (item: LookupItem) => void;
+}) {
+  const options = getAllowedSpecialRules(member, roster, rulesDb).filter((option) => option.item.validation.selectableAs);
+  const selectedRules = member.specialRules
+    .map((id) => rulesDb.specialRules.find((rule) => rule.id === id))
+    .filter((rule): rule is SpecialRule => Boolean(rule?.validation.selectableAs));
+
+  function removeRule(ruleId: string) {
+    onChange({ ...member, specialRules: member.specialRules.filter((id) => id !== ruleId) });
+  }
+
+  return (
+    <div className="skill-picker">
+      <div className="chip-list">
+        {selectedRules.map((rule) => (
+          <span className="choice-chip" key={rule.id}>
+            <button className="chip" onClick={() => onLookup({ type: "specialRule", item: rule })}>
+              {rule.name}
+            </button>
+            <button className="mini-remove" aria-label={`Remove ${rule.name}`} onClick={() => removeRule(rule.id)}>
+              Remove
+            </button>
+          </span>
+        ))}
+        {selectedRules.length === 0 && <span className="muted">None</span>}
+      </div>
+      <select
+        value=""
+        onChange={(event) => {
+          const rule = rulesDb.specialRules.find((item) => item.id === event.target.value);
+          if (rule && !member.specialRules.includes(rule.id)) onChange({ ...member, specialRules: [...member.specialRules, rule.id] });
+        }}
+      >
+        <option value="">Add prayer or spell</option>
+        {options.map((option) => (
+          <option value={option.item.id} disabled={!option.allowed} key={option.item.id}>
+            {option.item.name} {option.allowed ? "" : `- ${option.reason}`}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+}
+
 function CampaignPanel({
   roster,
   onRosterChange
@@ -1073,7 +1137,7 @@ function LookupPanel({ lookupItem, onClose }: { lookupItem: LookupItem; onClose:
       ? lookupItem.item.category.replaceAll("_", " ")
       : lookupItem.type === "skill"
         ? skillCategoryName(lookupItem.item.categoryId)
-        : "special rule";
+        : lookupItem.item.validation.selectableAs ?? "special rule";
   const summary =
     lookupItem.type === "equipment"
       ? lookupItem.item.rulesSummary

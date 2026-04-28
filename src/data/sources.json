@@ -32,6 +32,14 @@
     "notes": "Official Broheim-hosted Sisters of Sigmar warband PDF from the Mordheim rulebook set."
   },
   {
+    "id": "mhr-skaven",
+    "title": "Skaven",
+    "url": "https://broheim.net/downloads/warbands/official/Skaven.pdf",
+    "type": "warband_pdf",
+    "broheimGrade": "1a",
+    "notes": "Official Broheim-hosted Skaven warband PDF from the Mordheim rulebook set."
+  },
+  {
     "id": "eif-empire-in-flames",
     "title": "Empire in Flames",
     "url": "https://broheim.net/downloads/rules/Empire%20In%20Flames.pdf",

@@ -7,6 +7,7 @@ import type {
   RulesDb,
   Skill,
   SourceRef,
+  SpecialRule,
   ValidationIssue,
   WarbandFilter,
   WarbandType
@@ -111,6 +112,14 @@ export function getAllowedSkills(
 
     return allowed(skill, "Allowed by fighter type skill access.", source);
   });
+}
+
+export function getAllowedSpecialRules(
+  member: RosterMember,
+  roster: Roster,
+  rulesDb: RulesDb
+): AllowedOption<SpecialRule>[] {
+  return rulesDb.specialRules.map((rule) => specialRuleOptionFor(rule, member, roster, rulesDb));
 }
 
 export function calculateRosterCost(roster: Roster, rulesDb: RulesDb): number {
@@ -244,6 +253,7 @@ export function validateRoster(roster: Roster, rulesDb: RulesDb): ValidationIssu
 
     validateWeaponAndArmourLimits(member, rulesDb, issues);
     validateSkills(member, roster, rulesDb, issues);
+    validateSpecialRules(member, roster, rulesDb, issues);
     validateExperience(member, fighterType, rulesDb, issues);
   }
 
@@ -305,12 +315,52 @@ export function sourceForSkill(skill: Skill): SourceRef {
   };
 }
 
+export function sourceForSpecialRule(rule: SpecialRule): SourceRef {
+  return {
+    sourceDocumentId: rule.sourceDocumentId,
+    sourceUrl: rule.sourceUrl,
+    pageRef: rule.pageRef,
+    label: rule.name
+  };
+}
+
 export function sourceForWarband(warband: WarbandType): SourceRef {
   return {
     sourceDocumentId: warband.sourceDocumentId,
     sourceUrl: warband.sourceUrl,
     label: warband.name
   };
+}
+
+function specialRuleOptionFor(
+  rule: SpecialRule,
+  member: RosterMember,
+  _roster: Roster,
+  rulesDb: RulesDb,
+  options: { ignoreAlreadySelected?: boolean } = {}
+): AllowedOption<SpecialRule> {
+  const fighterType = findFighterType(rulesDb, member.fighterTypeId);
+  const source = sourceForSpecialRule(rule);
+  if (!fighterType) return blocked(rule, "Unknown fighter type.", source);
+  if (!rule.validation.selectableAs) return blocked(rule, "This rule is not selected directly.", source);
+  if (!options.ignoreAlreadySelected && member.specialRules.includes(rule.id)) {
+    return blocked(rule, "Already selected.", source);
+  }
+
+  if (
+    rule.validation.allowedFighterTypeIds.length > 0 &&
+    !rule.validation.allowedFighterTypeIds.includes(fighterType.id)
+  ) {
+    return blocked(rule, `${rule.name} is restricted to specific fighter types.`, source);
+  }
+
+  const activeRuleIds = new Set([...fighterType.specialRuleIds, ...member.specialRules]);
+  const missingRequiredRule = rule.validation.requiredSpecialRuleIds.find((ruleId) => !activeRuleIds.has(ruleId));
+  if (missingRequiredRule) {
+    return blocked(rule, `${rule.name} requires ${missingRequiredRule}.`, source);
+  }
+
+  return allowed(rule, `Allowed by ${rule.validation.selectableAs} access.`, source);
 }
 
 function equipmentOptionFor(
@@ -352,10 +402,11 @@ function validateWeaponAndArmourLimits(member: RosterMember, rulesDb: RulesDb, i
   const source = sourceForRule(rulesDb, "weapon-use-limits");
 
   equipmentSets.forEach((equipment, index) => {
-    const counts = equipment.reduce(
-      (acc, itemId) => {
-        const item = findEquipment(rulesDb, itemId);
-        if (!item) return acc;
+    const items = equipment
+      .map((itemId) => findEquipment(rulesDb, itemId))
+      .filter((item): item is EquipmentItem => Boolean(item));
+    const counts = items.reduce(
+      (acc, item) => {
         acc.closeCombat += item.validation.closeCombatSlots;
         acc.missile += item.validation.missileSlots;
         if (item.validation.isFreeFirstPerWarrior && !acc.freeCloseCombatUsed) {
@@ -378,7 +429,17 @@ function validateWeaponAndArmourLimits(member: RosterMember, rulesDb: RulesDb, i
     );
 
     const label = equipmentSets.length > 1 ? ` model ${index + 1}` : "";
-    if (counts.closeCombat > 2) {
+    const weaponItems = items.filter((item) => item.category === "close_combat" || item.category === "missile");
+    const exclusiveWeapon = weaponItems.find((item) => item.validation.disallowsOtherWeapons);
+    const tailFightingAllowsExtraWeapon =
+      counts.closeCombat === 3 &&
+      member.skills.includes("tail-fighting") &&
+      items.some((item) => item.id === "dagger" || item.id === "sword") &&
+      !exclusiveWeapon;
+    if (exclusiveWeapon && weaponItems.some((item) => item.id !== exclusiveWeapon.id)) {
+      issues.push(issue("error", "CANNOT_COMBINE_WEAPONS", `${exclusiveWeapon.name} cannot be combined with other weapons.`, "This weapon is marked as requiring exclusive use in its rules metadata.", member.id, "equipment", sourceForEquipment(exclusiveWeapon), "Remove the other weapons from this fighter."));
+    }
+    if (counts.closeCombat > 2 && !tailFightingAllowsExtraWeapon) {
       issues.push(issue("error", "TOO_MANY_CLOSE_COMBAT_WEAPONS", `This fighter${label} has too many close combat weapons.`, "A warrior may carry up to two close combat weapons in addition to the free dagger.", member.id, "equipment", source, "Remove a close combat weapon."));
     }
     if (counts.missile > 2) {
@@ -415,6 +476,23 @@ function validateSkills(member: RosterMember, roster: Roster, rulesDb: RulesDb, 
     const option = allowedSkillOptions.find((entry) => entry.item.id === skillId);
     if (!option?.allowed) {
       issues.push(issue("error", "INVALID_SKILL", `${skill.name} is not legal for this fighter.`, option?.reason ?? "The fighter type does not have this skill access.", member.id, "skills", sourceForSkill(skill), "Choose a skill from an allowed category."));
+    }
+  }
+}
+
+function validateSpecialRules(member: RosterMember, roster: Roster, rulesDb: RulesDb, issues: ValidationIssue[]) {
+  const fighterType = findFighterType(rulesDb, member.fighterTypeId);
+  for (const ruleId of member.specialRules) {
+    const rule = rulesDb.specialRules.find((entry) => entry.id === ruleId);
+    if (!rule) {
+      issues.push(issue("error", "UNKNOWN_SPECIAL_RULE", `Unknown special rule id: ${ruleId}.`, "The roster references a special rule that is not present in rules data.", member.id, "specialRules"));
+      continue;
+    }
+    if (fighterType?.specialRuleIds.includes(ruleId)) continue;
+
+    const option = specialRuleOptionFor(rule, member, roster, rulesDb, { ignoreAlreadySelected: true });
+    if (!option.allowed) {
+      issues.push(issue("error", "INVALID_SPECIAL_RULE", `${rule.name} is not legal for this fighter.`, option.reason, member.id, "specialRules", sourceForSpecialRule(rule), "Choose a prayer, spell or ability from the fighter's allowed list."));
     }
   }
 }

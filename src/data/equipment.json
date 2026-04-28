@@ -46,6 +46,18 @@
     "validation": { "closeCombatSlots": 1, "missileSlots": 0, "isFreeFirstPerWarrior": false, "isBodyArmour": false, "isShield": false, "isHelmet": false, "isBuckler": false, "nonRepeatable": false, "grantsWeaponUse": [] }
   },
   {
+    "id": "club",
+    "name": "Club",
+    "category": "close_combat",
+    "cost": 3,
+    "rulesSummary": "Common one-handed close combat weapon from the Skaven henchmen equipment list.",
+    "specialRuleIds": [],
+    "sourceDocumentId": "mhr-skaven",
+    "sourceUrl": "https://broheim.net/downloads/warbands/official/Skaven.pdf",
+    "pageRef": "Skaven p. 28",
+    "validation": { "closeCombatSlots": 1, "missileSlots": 0, "isFreeFirstPerWarrior": false, "isBodyArmour": false, "isShield": false, "isHelmet": false, "isBuckler": false, "nonRepeatable": false, "grantsWeaponUse": [] }
+  },
+  {
     "id": "sigmarite-warhammer",
     "name": "Sigmarite Warhammer",
     "category": "close_combat",
@@ -117,6 +129,34 @@
     "sourceUrl": "https://broheim.net/downloads/warbands/official/Mercenaries.pdf",
     "pageRef": "Mercenaries p. 8",
     "validation": { "closeCombatSlots": 1, "missileSlots": 0, "isFreeFirstPerWarrior": false, "isBodyArmour": false, "isShield": false, "isHelmet": false, "isBuckler": false, "nonRepeatable": false, "grantsWeaponUse": [] }
+  },
+  {
+    "id": "weeping-blades",
+    "name": "Weeping Blades",
+    "category": "close_combat",
+    "cost": 50,
+    "rarity": "Rare 9, Skaven only",
+    "rulesSummary": "Skaven-only paired swords that are permanently venomous and can parry.",
+    "specialRuleIds": ["weeping-blades-pair", "weeping-blades-venomous", "weeping-blades-parry"],
+    "sourceDocumentId": "mhr-skaven",
+    "sourceUrl": "https://broheim.net/downloads/warbands/official/Skaven.pdf",
+    "pageRef": "Skaven p. 29",
+    "restrictions": "Skaven heroes equipment list only.",
+    "validation": { "closeCombatSlots": 2, "missileSlots": 0, "isFreeFirstPerWarrior": false, "isBodyArmour": false, "isShield": false, "isHelmet": false, "isBuckler": false, "nonRepeatable": true, "grantsWeaponUse": [] }
+  },
+  {
+    "id": "fighting-claws",
+    "name": "Fighting Claws",
+    "category": "close_combat",
+    "cost": 35,
+    "rarity": "Rare 7, Skaven only",
+    "rulesSummary": "Skaven-only paired claws that grant an extra attack, help climbing, allow parries and cannot be combined with other weapons.",
+    "specialRuleIds": ["fighting-claws-pair", "fighting-claws-climb", "fighting-claws-parry", "fighting-claws-cumbersome"],
+    "sourceDocumentId": "mhr-skaven",
+    "sourceUrl": "https://broheim.net/downloads/warbands/official/Skaven.pdf",
+    "pageRef": "Skaven p. 29",
+    "restrictions": "Skaven heroes equipment list only. Cumbersome: may not be used with other weapons.",
+    "validation": { "closeCombatSlots": 2, "missileSlots": 0, "isFreeFirstPerWarrior": false, "isBodyArmour": false, "isShield": false, "isHelmet": false, "isBuckler": false, "nonRepeatable": true, "grantsWeaponUse": [], "disallowsOtherWeapons": true }
   },
   {
     "id": "flail",
@@ -206,6 +246,33 @@
     "validation": { "closeCombatSlots": 0, "missileSlots": 1, "isFreeFirstPerWarrior": false, "isBodyArmour": false, "isShield": false, "isHelmet": false, "isBuckler": false, "nonRepeatable": false, "grantsWeaponUse": [] }
   },
   {
+    "id": "throwing-stars",
+    "name": "Throwing Stars",
+    "category": "missile",
+    "cost": 15,
+    "rulesSummary": "Skaven hero missile weapon from the Clan Eshin equipment list.",
+    "specialRuleIds": [],
+    "sourceDocumentId": "mhr-skaven",
+    "sourceUrl": "https://broheim.net/downloads/warbands/official/Skaven.pdf",
+    "pageRef": "Skaven p. 28",
+    "restrictions": "Skaven heroes equipment list only.",
+    "validation": { "closeCombatSlots": 0, "missileSlots": 1, "isFreeFirstPerWarrior": false, "isBodyArmour": false, "isShield": false, "isHelmet": false, "isBuckler": false, "nonRepeatable": false, "grantsWeaponUse": [] }
+  },
+  {
+    "id": "blowpipe",
+    "name": "Blowpipe",
+    "category": "missile",
+    "cost": 25,
+    "rarity": "Rare 7, Skaven only",
+    "rulesSummary": "Short-ranged Skaven-only poisoned missile weapon that can fire while hidden without automatically revealing the shooter.",
+    "specialRuleIds": ["blowpipe-poison", "blowpipe-stealthy"],
+    "sourceDocumentId": "mhr-skaven",
+    "sourceUrl": "https://broheim.net/downloads/warbands/official/Skaven.pdf",
+    "pageRef": "Skaven p. 29",
+    "restrictions": "Skaven heroes equipment list only.",
+    "validation": { "closeCombatSlots": 0, "missileSlots": 1, "isFreeFirstPerWarrior": false, "isBodyArmour": false, "isShield": false, "isHelmet": false, "isBuckler": false, "nonRepeatable": false, "grantsWeaponUse": [] }
+  },
+  {
     "id": "short-bow",
     "name": "Short Bow",
     "category": "missile",
@@ -264,6 +331,34 @@
     "sourceDocumentId": "mordheim-core-rules",
     "sourceUrl": "https://www.broheim.net/downloads/rules/Mordheim%20Core%20Rules%20Printable.pdf",
     "pageRef": "Core p. 46 / Witch Hunters p. 16",
+    "validation": { "closeCombatSlots": 0, "missileSlots": 1, "isFreeFirstPerWarrior": false, "isBodyArmour": false, "isShield": false, "isHelmet": false, "isBuckler": false, "nonRepeatable": true, "grantsWeaponUse": [] }
+  },
+  {
+    "id": "warplock-pistol",
+    "name": "Warplock Pistol",
+    "category": "missile",
+    "cost": 35,
+    "rarity": "Rare 11, Skaven only",
+    "rulesSummary": "Skaven-only pistol with high Strength and a fire-every-other-turn restriction.",
+    "specialRuleIds": ["warplock-fire-every-other-turn"],
+    "sourceDocumentId": "mhr-skaven",
+    "sourceUrl": "https://broheim.net/downloads/warbands/official/Skaven.pdf",
+    "pageRef": "Skaven p. 29",
+    "restrictions": "Skaven heroes equipment list only.",
+    "validation": { "closeCombatSlots": 0, "missileSlots": 1, "isFreeFirstPerWarrior": false, "isBodyArmour": false, "isShield": false, "isHelmet": false, "isBuckler": false, "nonRepeatable": false, "grantsWeaponUse": [] }
+  },
+  {
+    "id": "brace-of-warplock-pistols",
+    "name": "Brace of Warplock Pistols",
+    "category": "missile",
+    "cost": 70,
+    "rarity": "Rare 11, Skaven only",
+    "rulesSummary": "A pair of warplock pistols. For this app's warband creation weapon limits, a brace counts as one missile weapon.",
+    "specialRuleIds": ["warplock-fire-every-other-turn"],
+    "sourceDocumentId": "mhr-skaven",
+    "sourceUrl": "https://broheim.net/downloads/warbands/official/Skaven.pdf",
+    "pageRef": "Skaven p. 28-29",
+    "restrictions": "Skaven heroes equipment list only.",
     "validation": { "closeCombatSlots": 0, "missileSlots": 1, "isFreeFirstPerWarrior": false, "isBodyArmour": false, "isShield": false, "isHelmet": false, "isBuckler": false, "nonRepeatable": true, "grantsWeaponUse": [] }
   },
   {

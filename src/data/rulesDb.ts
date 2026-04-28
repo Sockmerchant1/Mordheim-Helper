@@ -7,6 +7,7 @@ import specialRules from "./specialRules.json";
 import carnivalOfChaos from "./warbands/carnival-of-chaos.json";
 import mercenaries from "./warbands/mercenaries.json";
 import sistersOfSigmar from "./warbands/sisters-of-sigmar.json";
+import skaven from "./warbands/skaven.json";
 import witchHunters from "./warbands/witch-hunters.json";
 import warbandIndexSeed from "./warbandIndex.json";
 import { rulesDbSchema, warbandSeedCollectionSchema, warbandSeedSchema } from "../rules/schemas";
@@ -15,7 +16,8 @@ import type { RulesDb } from "../rules/types";
 const warbandSeeds = [
   warbandSeedSchema.parse(witchHunters),
   warbandSeedSchema.parse(sistersOfSigmar),
-  warbandSeedSchema.parse(carnivalOfChaos)
+  warbandSeedSchema.parse(carnivalOfChaos),
+  warbandSeedSchema.parse(skaven)
 ];
 const warbandSeedCollections = [warbandSeedCollectionSchema.parse(mercenaries)];
 

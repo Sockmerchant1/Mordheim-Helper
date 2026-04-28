@@ -74,6 +74,7 @@ export const equipmentValidationSchema = z.object({
   isBuckler: z.boolean().default(false),
   nonRepeatable: z.boolean().default(false),
   grantsWeaponUse: z.array(z.string()).default([]),
+  disallowsOtherWeapons: z.boolean().default(false),
   costGroupId: z.string().optional(),
   costGroupSubsequentMultiplier: z.number().default(1)
 });
@@ -88,6 +89,7 @@ const defaultEquipmentValidation = {
   isBuckler: false,
   nonRepeatable: false,
   grantsWeaponUse: [],
+  disallowsOtherWeapons: false,
   costGroupSubsequentMultiplier: 1
 };
 
@@ -146,7 +148,12 @@ export const specialRuleSchema = z.object({
   sourceUrl: z.string().url(),
   pageRef: z.string().optional(),
   restrictions: z.string().optional(),
-  relatedRuleIds: z.array(z.string()).default([])
+  relatedRuleIds: z.array(z.string()).default([]),
+  validation: z.object({
+    selectableAs: z.enum(["spell", "prayer", "ritual", "ability"]).optional(),
+    allowedFighterTypeIds: z.array(z.string()).default([]),
+    requiredSpecialRuleIds: z.array(z.string()).default([])
+  }).default({ allowedFighterTypeIds: [], requiredSpecialRuleIds: [] })
 });
 
 export const warbandTypeSchema = z.object({

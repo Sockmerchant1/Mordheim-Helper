@@ -532,6 +532,19 @@ button.blocked,
   padding: 0.35rem 0.55rem;
 }
 
+.choice-chip {
+  align-items: center;
+  display: inline-flex;
+  gap: 0.25rem;
+}
+
+.mini-remove {
+  background: #fffdf9;
+  font-size: 0.78rem;
+  min-height: 32px;
+  padding: 0.25rem 0.45rem;
+}
+
 .skill-picker {
   display: grid;
   gap: 0.5rem;

@@ -29,6 +29,11 @@
       "id": "sisters-special",
       "name": "Sisters of Sigmar Special",
       "skillIds": ["sign-of-sigmar", "protection-of-sigmar", "utter-determination", "righteous-fury", "absolute-faith"]
+    },
+    {
+      "id": "skaven-special",
+      "name": "Skaven Special",
+      "skillIds": ["black-hunger", "tail-fighting", "wall-runner", "infiltration", "art-of-silent-death"]
     }
   ],
   "skills": [
@@ -244,6 +249,61 @@
       "sourceUrl": "https://broheim.net/downloads/warbands/official/Sisters%20of%20Sigmar.pdf",
       "pageRef": "Sisters of Sigmar p. 20",
       "relatedRuleIds": []
+    },
+    {
+      "id": "black-hunger",
+      "name": "Black Hunger",
+      "categoryId": "skaven-special",
+      "effectSummary": "The hero may briefly gain extra attacks and movement, then suffers Strength 3 hits with no armour save.",
+      "restrictions": "Skaven heroes with access to the Skaven Special skill list.",
+      "sourceDocumentId": "mhr-skaven",
+      "sourceUrl": "https://broheim.net/downloads/warbands/official/Skaven.pdf",
+      "pageRef": "Skaven p. 30",
+      "relatedRuleIds": []
+    },
+    {
+      "id": "tail-fighting",
+      "name": "Tail Fighting",
+      "categoryId": "skaven-special",
+      "effectSummary": "The Skaven may use its tail to gain an extra attack with a suitable weapon or a bonus to armour save with a shield.",
+      "restrictions": "Skaven heroes with access to the Skaven Special skill list.",
+      "sourceDocumentId": "mhr-skaven",
+      "sourceUrl": "https://broheim.net/downloads/warbands/official/Skaven.pdf",
+      "pageRef": "Skaven p. 30",
+      "relatedRuleIds": ["weapon-use-limits"]
+    },
+    {
+      "id": "wall-runner",
+      "name": "Wall Runner",
+      "categoryId": "skaven-special",
+      "effectSummary": "The Skaven does not need to take Initiative tests when climbing walls and other sheer surfaces.",
+      "restrictions": "Skaven heroes with access to the Skaven Special skill list.",
+      "sourceDocumentId": "mhr-skaven",
+      "sourceUrl": "https://broheim.net/downloads/warbands/official/Skaven.pdf",
+      "pageRef": "Skaven p. 30",
+      "relatedRuleIds": []
+    },
+    {
+      "id": "infiltration",
+      "name": "Infiltration",
+      "categoryId": "skaven-special",
+      "effectSummary": "The Skaven may be deployed after the opposing warband, outside enemy sight and beyond the listed distance.",
+      "restrictions": "Skaven heroes with access to the Skaven Special skill list.",
+      "sourceDocumentId": "mhr-skaven",
+      "sourceUrl": "https://broheim.net/downloads/warbands/official/Skaven.pdf",
+      "pageRef": "Skaven p. 30",
+      "relatedRuleIds": []
+    },
+    {
+      "id": "art-of-silent-death",
+      "name": "Art of Silent Death",
+      "categoryId": "skaven-special",
+      "effectSummary": "The Skaven fights effectively unarmed, counts as having two weapons and causes critical hits on stronger wound rolls.",
+      "restrictions": "Skaven heroes with access to the Skaven Special skill list.",
+      "sourceDocumentId": "mhr-skaven",
+      "sourceUrl": "https://broheim.net/downloads/warbands/official/Skaven.pdf",
+      "pageRef": "Skaven p. 30",
+      "relatedRuleIds": ["fighting-claws-pair"]
     }
   ]
 }
