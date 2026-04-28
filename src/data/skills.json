@@ -1,0 +1,234 @@
+{
+  "categories": [
+    {
+      "id": "combat",
+      "name": "Combat",
+      "skillIds": ["strike-to-injure", "combat-master", "weapons-training"]
+    },
+    {
+      "id": "shooting",
+      "name": "Shooting",
+      "skillIds": ["quick-shot", "pistolier", "weapons-expert"]
+    },
+    {
+      "id": "academic",
+      "name": "Academic",
+      "skillIds": ["battle-tongue", "sorcery", "wyrdstone-hunter"]
+    },
+    {
+      "id": "strength",
+      "name": "Strength",
+      "skillIds": ["mighty-blow", "resilient"]
+    },
+    {
+      "id": "speed",
+      "name": "Speed",
+      "skillIds": ["step-aside", "sprint"]
+    },
+    {
+      "id": "sisters-special",
+      "name": "Sisters of Sigmar Special",
+      "skillIds": ["sign-of-sigmar", "protection-of-sigmar", "utter-determination", "righteous-fury", "absolute-faith"]
+    }
+  ],
+  "skills": [
+    {
+      "id": "strike-to-injure",
+      "name": "Strike to Injure",
+      "categoryId": "combat",
+      "effectSummary": "Adds +1 to injury rolls caused by the warrior in hand-to-hand combat.",
+      "restrictions": "Only heroes with Combat skill access unless another rule grants access.",
+      "sourceDocumentId": "mordheim-core-rules",
+      "sourceUrl": "https://www.broheim.net/downloads/rules/Mordheim%20Core%20Rules%20Printable.pdf",
+      "pageRef": "Core p. 84",
+      "relatedRuleIds": []
+    },
+    {
+      "id": "combat-master",
+      "name": "Combat Master",
+      "categoryId": "combat",
+      "effectSummary": "Helps a warrior fight multiple opponents and avoid All Alone pressure.",
+      "restrictions": "Only heroes with Combat skill access unless another rule grants access.",
+      "sourceDocumentId": "mordheim-core-rules",
+      "sourceUrl": "https://www.broheim.net/downloads/rules/Mordheim%20Core%20Rules%20Printable.pdf",
+      "pageRef": "Core p. 84",
+      "relatedRuleIds": []
+    },
+    {
+      "id": "weapons-training",
+      "name": "Weapons Training",
+      "categoryId": "combat",
+      "effectSummary": "Allows use of hand-to-hand weapons beyond the warrior's normal equipment options.",
+      "restrictions": "Only heroes with Combat skill access unless another rule grants access.",
+      "sourceDocumentId": "mordheim-core-rules",
+      "sourceUrl": "https://www.broheim.net/downloads/rules/Mordheim%20Core%20Rules%20Printable.pdf",
+      "pageRef": "Core p. 84",
+      "relatedRuleIds": ["weapon-use-limits"]
+    },
+    {
+      "id": "quick-shot",
+      "name": "Quick Shot",
+      "categoryId": "shooting",
+      "effectSummary": "Allows two shots per turn with a bow or crossbow, subject to its listed exclusions.",
+      "restrictions": "Only heroes with Shooting skill access unless another rule grants access.",
+      "sourceDocumentId": "mordheim-core-rules",
+      "sourceUrl": "https://www.broheim.net/downloads/rules/Mordheim%20Core%20Rules%20Printable.pdf",
+      "pageRef": "Core p. 84",
+      "relatedRuleIds": []
+    },
+    {
+      "id": "pistolier",
+      "name": "Pistolier",
+      "categoryId": "shooting",
+      "effectSummary": "Improves pistol use, especially when the warrior carries a brace of pistols.",
+      "restrictions": "Only heroes with Shooting skill access unless another rule grants access.",
+      "sourceDocumentId": "mordheim-core-rules",
+      "sourceUrl": "https://www.broheim.net/downloads/rules/Mordheim%20Core%20Rules%20Printable.pdf",
+      "pageRef": "Core p. 84",
+      "relatedRuleIds": []
+    },
+    {
+      "id": "weapons-expert",
+      "name": "Weapons Expert",
+      "categoryId": "shooting",
+      "effectSummary": "Allows use of missile weapons beyond the warrior's normal equipment options.",
+      "restrictions": "Only heroes with Shooting skill access unless another rule grants access.",
+      "sourceDocumentId": "mordheim-core-rules",
+      "sourceUrl": "https://www.broheim.net/downloads/rules/Mordheim%20Core%20Rules%20Printable.pdf",
+      "pageRef": "Core p. 84",
+      "relatedRuleIds": ["weapon-use-limits"]
+    },
+    {
+      "id": "battle-tongue",
+      "name": "Battle Tongue",
+      "categoryId": "academic",
+      "effectSummary": "Extends the reach of a leader's command ability.",
+      "restrictions": "Leader only. Undead leaders cannot use it.",
+      "sourceDocumentId": "mordheim-core-rules",
+      "sourceUrl": "https://www.broheim.net/downloads/rules/Mordheim%20Core%20Rules%20Printable.pdf",
+      "pageRef": "Core p. 85",
+      "relatedRuleIds": ["leader"]
+    },
+    {
+      "id": "sorcery",
+      "name": "Sorcery",
+      "categoryId": "academic",
+      "effectSummary": "Improves spell casting rolls for eligible spellcasters.",
+      "restrictions": "Spellcasters only; Sisters of Sigmar and Warrior-Priests may not use it.",
+      "sourceDocumentId": "mordheim-core-rules",
+      "sourceUrl": "https://www.broheim.net/downloads/rules/Mordheim%20Core%20Rules%20Printable.pdf",
+      "pageRef": "Core p. 85",
+      "relatedRuleIds": []
+    },
+    {
+      "id": "wyrdstone-hunter",
+      "name": "Wyrdstone Hunter",
+      "categoryId": "academic",
+      "effectSummary": "Helps the warband find wyrdstone during exploration.",
+      "restrictions": "Only heroes with Academic skill access unless another rule grants access.",
+      "sourceDocumentId": "mordheim-core-rules",
+      "sourceUrl": "https://www.broheim.net/downloads/rules/Mordheim%20Core%20Rules%20Printable.pdf",
+      "pageRef": "Core p. 85",
+      "relatedRuleIds": []
+    },
+    {
+      "id": "mighty-blow",
+      "name": "Mighty Blow",
+      "categoryId": "strength",
+      "effectSummary": "Adds +1 Strength in close combat.",
+      "restrictions": "Only heroes with Strength skill access unless another rule grants access.",
+      "sourceDocumentId": "mordheim-core-rules",
+      "sourceUrl": "https://www.broheim.net/downloads/rules/Mordheim%20Core%20Rules%20Printable.pdf",
+      "pageRef": "Core p. 85",
+      "relatedRuleIds": []
+    },
+    {
+      "id": "resilient",
+      "name": "Resilient",
+      "categoryId": "strength",
+      "effectSummary": "Makes the warrior harder to wound.",
+      "restrictions": "Only heroes with Strength skill access unless another rule grants access.",
+      "sourceDocumentId": "mordheim-core-rules",
+      "sourceUrl": "https://www.broheim.net/downloads/rules/Mordheim%20Core%20Rules%20Printable.pdf",
+      "pageRef": "Core p. 85",
+      "relatedRuleIds": []
+    },
+    {
+      "id": "step-aside",
+      "name": "Step Aside",
+      "categoryId": "speed",
+      "effectSummary": "Gives an additional unmodified 5+ save against wounds suffered in close combat after other saves.",
+      "restrictions": "Only heroes with Speed skill access unless another rule grants access.",
+      "sourceDocumentId": "mordheim-core-rules",
+      "sourceUrl": "https://www.broheim.net/downloads/rules/Mordheim%20Core%20Rules%20Printable.pdf",
+      "pageRef": "Core p. 84",
+      "relatedRuleIds": []
+    },
+    {
+      "id": "sprint",
+      "name": "Sprint",
+      "categoryId": "speed",
+      "effectSummary": "Allows faster running movement.",
+      "restrictions": "Only heroes with Speed skill access unless another rule grants access.",
+      "sourceDocumentId": "mordheim-core-rules",
+      "sourceUrl": "https://www.broheim.net/downloads/rules/Mordheim%20Core%20Rules%20Printable.pdf",
+      "pageRef": "Core p. 86",
+      "relatedRuleIds": []
+    },
+    {
+      "id": "sign-of-sigmar",
+      "name": "Sign of Sigmar",
+      "categoryId": "sisters-special",
+      "effectSummary": "Possessed or Undead opponents lose their first attack against the priestess in the first round of hand-to-hand combat, to a minimum of one attack.",
+      "restrictions": "Sisters of Sigmar heroines with access to the Special skill list.",
+      "sourceDocumentId": "mhr-sisters-of-sigmar",
+      "sourceUrl": "https://broheim.net/downloads/warbands/official/Sisters%20of%20Sigmar.pdf",
+      "pageRef": "Sisters of Sigmar p. 20",
+      "relatedRuleIds": []
+    },
+    {
+      "id": "protection-of-sigmar",
+      "name": "Protection of Sigmar",
+      "categoryId": "sisters-special",
+      "effectSummary": "Spells affecting the sister are nullified on a 4+ roll; if nullified, the spell affects no other models either.",
+      "restrictions": "Sisters of Sigmar heroines with access to the Special skill list.",
+      "sourceDocumentId": "mhr-sisters-of-sigmar",
+      "sourceUrl": "https://broheim.net/downloads/warbands/official/Sisters%20of%20Sigmar.pdf",
+      "pageRef": "Sisters of Sigmar p. 20",
+      "relatedRuleIds": []
+    },
+    {
+      "id": "utter-determination",
+      "name": "Utter Determination",
+      "categoryId": "sisters-special",
+      "effectSummary": "Allows the Matriarch to re-roll failed Rout tests.",
+      "restrictions": "Matriarch only.",
+      "sourceDocumentId": "mhr-sisters-of-sigmar",
+      "sourceUrl": "https://broheim.net/downloads/warbands/official/Sisters%20of%20Sigmar.pdf",
+      "pageRef": "Sisters of Sigmar p. 20",
+      "relatedRuleIds": []
+    },
+    {
+      "id": "righteous-fury",
+      "name": "Righteous Fury",
+      "categoryId": "sisters-special",
+      "effectSummary": "The sister hates Skaven, Undead and Possessed warbands and all models in them.",
+      "restrictions": "Sisters of Sigmar heroines with access to the Special skill list.",
+      "sourceDocumentId": "mhr-sisters-of-sigmar",
+      "sourceUrl": "https://broheim.net/downloads/warbands/official/Sisters%20of%20Sigmar.pdf",
+      "pageRef": "Sisters of Sigmar p. 20",
+      "relatedRuleIds": []
+    },
+    {
+      "id": "absolute-faith",
+      "name": "Absolute Faith",
+      "categoryId": "sisters-special",
+      "effectSummary": "The sister may re-roll Fear tests and does not test for fighting alone against several opponents.",
+      "restrictions": "Sisters of Sigmar heroines with access to the Special skill list.",
+      "sourceDocumentId": "mhr-sisters-of-sigmar",
+      "sourceUrl": "https://broheim.net/downloads/warbands/official/Sisters%20of%20Sigmar.pdf",
+      "pageRef": "Sisters of Sigmar p. 20",
+      "relatedRuleIds": []
+    }
+  ]
+}

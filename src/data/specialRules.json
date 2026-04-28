@@ -1,0 +1,178 @@
+[
+  {
+    "id": "leader",
+    "name": "Leader",
+    "effectSummary": "Nearby warriors may use this model's Leadership for Leadership tests within the listed range.",
+    "appliesTo": "Warband leaders.",
+    "sourceDocumentId": "mordheim-core-rules",
+    "sourceUrl": "https://www.broheim.net/downloads/rules/Mordheim%20Core%20Rules%20Printable.pdf",
+    "pageRef": "Core p. 46 and individual warband entries",
+    "restrictions": "Only the model identified as the warband leader grants this rule.",
+    "relatedRuleIds": ["required-leader"]
+  },
+  {
+    "id": "burn-the-witch",
+    "name": "Burn the Witch!",
+    "effectSummary": "The warrior hates models that can cast spells.",
+    "appliesTo": "Witch Hunter Captain and Witch Hunters.",
+    "sourceDocumentId": "mhr-witch-hunters",
+    "sourceUrl": "https://broheim.net/downloads/warbands/official/Witch%20Hunters.pdf",
+    "pageRef": "Witch Hunters p. 17",
+    "restrictions": "Applies as listed in the Witch Hunters warband entry.",
+    "relatedRuleIds": []
+  },
+  {
+    "id": "prayers-of-sigmar",
+    "name": "Prayers of Sigmar",
+    "effectSummary": "The model may use Prayers of Sigmar from the magic/prayers rules.",
+    "appliesTo": "Warrior-Priests and Sigmarite Matriarchs.",
+    "sourceDocumentId": "mordheim-core-rules",
+    "sourceUrl": "https://www.broheim.net/downloads/rules/Mordheim%20Core%20Rules%20Printable.pdf",
+    "pageRef": "Magic section and individual warband entries",
+    "restrictions": "Models with this rule use Prayers of Sigmar rather than ordinary spell lists.",
+    "relatedRuleIds": []
+  },
+  {
+    "id": "animals",
+    "name": "Animals",
+    "effectSummary": "Animal warriors do not gain experience.",
+    "appliesTo": "Warhounds and other animal fighter types.",
+    "sourceDocumentId": "mhr-witch-hunters",
+    "sourceUrl": "https://broheim.net/downloads/warbands/official/Witch%20Hunters.pdf",
+    "pageRef": "Witch Hunters p. 18",
+    "restrictions": "Applies to fighter types marked as animals.",
+    "relatedRuleIds": ["experience-advances"]
+  },
+  {
+    "id": "fanatical",
+    "name": "Fanatical",
+    "effectSummary": "The fighter automatically passes Leadership-based tests and may never become warband leader.",
+    "appliesTo": "Flagellants.",
+    "sourceDocumentId": "mhr-witch-hunters",
+    "sourceUrl": "https://broheim.net/downloads/warbands/official/Witch%20Hunters.pdf",
+    "pageRef": "Witch Hunters p. 18",
+    "restrictions": "Applies to Flagellants.",
+    "relatedRuleIds": []
+  },
+  {
+    "id": "reikland-discipline",
+    "name": "Reikland Discipline",
+    "effectSummary": "Reikland warriors may use their Captain's Leadership within 12 inches instead of the usual 6 inches.",
+    "appliesTo": "Reikland Mercenary warbands.",
+    "sourceDocumentId": "mhr-mercenaries",
+    "sourceUrl": "https://broheim.net/downloads/warbands/official/Mercenaries.pdf",
+    "pageRef": "Mercenaries p. 6",
+    "restrictions": "Applies only while the Reikland Captain is active and in range.",
+    "relatedRuleIds": ["leader"]
+  },
+  {
+    "id": "reikland-marksmen",
+    "name": "Reikland Marksmen",
+    "effectSummary": "All Reikland Marksmen add +1 to their Ballistic Skill when recruited.",
+    "appliesTo": "Reikland Marksmen.",
+    "sourceDocumentId": "mhr-mercenaries",
+    "sourceUrl": "https://broheim.net/downloads/warbands/official/Mercenaries.pdf",
+    "pageRef": "Mercenaries p. 6",
+    "restrictions": "Applies to Marksmen recruited for a Reikland Mercenary warband.",
+    "relatedRuleIds": []
+  },
+  {
+    "id": "middenheim-physical-prowess",
+    "name": "Middenheim Physical Prowess",
+    "effectSummary": "Middenheim Captains and Champions start with Strength 4 instead of Strength 3.",
+    "appliesTo": "Middenheim Mercenary Captains and Champions.",
+    "sourceDocumentId": "mhr-mercenaries",
+    "sourceUrl": "https://broheim.net/downloads/warbands/official/Mercenaries.pdf",
+    "pageRef": "Mercenaries p. 7",
+    "restrictions": "Applies only to the listed hero types in a Middenheim warband.",
+    "relatedRuleIds": []
+  },
+  {
+    "id": "marienburg-traders",
+    "name": "Marienburg Traders",
+    "effectSummary": "Marienburg warbands receive +1 when attempting to find rare items.",
+    "appliesTo": "Marienburg Mercenary warbands.",
+    "sourceDocumentId": "mhr-mercenaries",
+    "sourceUrl": "https://broheim.net/downloads/warbands/official/Mercenaries.pdf",
+    "pageRef": "Mercenaries p. 7",
+    "restrictions": "Applies during trading post rare item searches.",
+    "relatedRuleIds": []
+  },
+  {
+    "id": "marienburg-wealth",
+    "name": "Marienburg Wealth",
+    "effectSummary": "Marienburg warbands start a campaign with 600 gc instead of 500 gc.",
+    "appliesTo": "Marienburg Mercenary warbands.",
+    "sourceDocumentId": "mhr-mercenaries",
+    "sourceUrl": "https://broheim.net/downloads/warbands/official/Mercenaries.pdf",
+    "pageRef": "Mercenaries p. 7",
+    "restrictions": "Campaign starting treasury only; one-off games use the scenario's percentage guidance.",
+    "relatedRuleIds": ["starting-warband"]
+  },
+  {
+    "id": "expert-swordsmen",
+    "name": "Expert Swordsmen",
+    "effectSummary": "When charging and armed with normal swords, Swordsmen may re-roll failed hit rolls.",
+    "appliesTo": "Mercenary Swordsmen.",
+    "sourceDocumentId": "mhr-mercenaries",
+    "sourceUrl": "https://broheim.net/downloads/warbands/official/Mercenaries.pdf",
+    "pageRef": "Mercenaries p. 9",
+    "restrictions": "Only applies when armed with normal swords, not double-handed swords or other weapons.",
+    "relatedRuleIds": []
+  },
+  {
+    "id": "blessed-sight",
+    "name": "Blessed Sight",
+    "effectSummary": "The Augur may re-roll failed characteristic tests and failed rolls to hit, and may contribute an extra exploration die if not taken out of action.",
+    "appliesTo": "Augur.",
+    "sourceDocumentId": "mhr-sisters-of-sigmar",
+    "sourceUrl": "https://broheim.net/downloads/warbands/official/Sisters%20of%20Sigmar.pdf",
+    "pageRef": "Sisters of Sigmar p. 21",
+    "restrictions": "You must accept the second result for re-rolls.",
+    "relatedRuleIds": ["experience-advances"]
+  },
+  {
+    "id": "sigmarite-warhammer-concussion",
+    "name": "Concussion",
+    "effectSummary": "The Sigmarite warhammer is especially good at stunning enemies on injury rolls.",
+    "appliesTo": "Sigmarite warhammer.",
+    "sourceDocumentId": "mhr-sisters-of-sigmar",
+    "sourceUrl": "https://broheim.net/downloads/warbands/official/Sisters%20of%20Sigmar.pdf",
+    "pageRef": "Sisters of Sigmar p. 22",
+    "restrictions": "Applies when using a Sigmarite warhammer in close combat.",
+    "relatedRuleIds": []
+  },
+  {
+    "id": "sigmarite-warhammer-holy",
+    "name": "Holy Weapon",
+    "effectSummary": "The Sigmarite warhammer gains a to-wound bonus against Possessed or Undead models.",
+    "appliesTo": "Sigmarite warhammer.",
+    "sourceDocumentId": "mhr-sisters-of-sigmar",
+    "sourceUrl": "https://broheim.net/downloads/warbands/official/Sisters%20of%20Sigmar.pdf",
+    "pageRef": "Sisters of Sigmar p. 22",
+    "restrictions": "Only Matriarchs and Sister Superiors may carry two Sigmarite warhammers.",
+    "relatedRuleIds": []
+  },
+  {
+    "id": "steel-whip-cannot-be-parried",
+    "name": "Cannot Be Parried",
+    "effectSummary": "The steel whip prevents parries from swords or bucklers against its attacks.",
+    "appliesTo": "Steel whip.",
+    "sourceDocumentId": "mhr-sisters-of-sigmar",
+    "sourceUrl": "https://broheim.net/downloads/warbands/official/Sisters%20of%20Sigmar.pdf",
+    "pageRef": "Sisters of Sigmar p. 22",
+    "restrictions": "Applies to attacks made with a steel whip.",
+    "relatedRuleIds": []
+  },
+  {
+    "id": "steel-whip-whipcrack",
+    "name": "Whipcrack",
+    "effectSummary": "The steel whip can grant a bonus attack when charging or when charged, subject to the weapon's restrictions.",
+    "appliesTo": "Steel whip.",
+    "sourceDocumentId": "mhr-sisters-of-sigmar",
+    "sourceUrl": "https://broheim.net/downloads/warbands/official/Sisters%20of%20Sigmar.pdf",
+    "pageRef": "Sisters of Sigmar p. 22",
+    "restrictions": "Only the first whip gains the whipcrack bonus when using two whips.",
+    "relatedRuleIds": []
+  }
+]

@@ -1,0 +1,176 @@
+{
+  "warbandType": {
+    "id": "sisters-of-sigmar",
+    "name": "Sisters of Sigmar",
+    "race": "Human",
+    "broheimGrade": "1a",
+    "sourceCode": "MHR",
+    "sourceDocumentId": "mhr-sisters-of-sigmar",
+    "sourceUrl": "https://broheim.net/downloads/warbands/official/Sisters%20of%20Sigmar.pdf",
+    "implementationStatus": "tested",
+    "startingGold": 500,
+    "minWarriors": 3,
+    "maxWarriors": 15,
+    "maxHeroes": 5,
+    "leaderFighterTypeId": "sigmarite-matriarch",
+    "notes": "Official Sisters of Sigmar warband. Includes heroine-only equipment separation and Augur armour restriction."
+  },
+  "fighterTypes": [
+    {
+      "id": "sigmarite-matriarch",
+      "warbandTypeId": "sisters-of-sigmar",
+      "name": "Sigmarite Matriarch",
+      "category": "hero",
+      "minCount": 1,
+      "maxCount": 1,
+      "groupMinSize": null,
+      "groupMaxSize": null,
+      "hireCost": 70,
+      "startingExperience": 20,
+      "profile": { "M": 4, "WS": 4, "BS": 4, "S": 3, "T": 3, "W": 1, "I": 4, "A": 1, "Ld": 8 },
+      "equipmentListIds": ["sisters-heroine-equipment"],
+      "skillCategoryIds": ["combat", "academic", "strength", "speed", "sisters-special"],
+      "specialRuleIds": ["leader", "prayers-of-sigmar"],
+      "canGainExperience": true,
+      "isLargeCreature": false,
+      "ratingOverride": null,
+      "notes": "Required leader and prayer user.",
+      "source": {
+        "sourceDocumentId": "mhr-sisters-of-sigmar",
+        "sourceUrl": "https://broheim.net/downloads/warbands/official/Sisters%20of%20Sigmar.pdf",
+        "pageRef": "Sisters of Sigmar p. 21",
+        "label": "Heroines"
+      }
+    },
+    {
+      "id": "sister-superior",
+      "warbandTypeId": "sisters-of-sigmar",
+      "name": "Sister Superior",
+      "category": "hero",
+      "minCount": 0,
+      "maxCount": 3,
+      "groupMinSize": null,
+      "groupMaxSize": null,
+      "hireCost": 35,
+      "startingExperience": 8,
+      "profile": { "M": 4, "WS": 4, "BS": 3, "S": 3, "T": 3, "W": 1, "I": 3, "A": 1, "Ld": 7 },
+      "equipmentListIds": ["sisters-heroine-equipment"],
+      "skillCategoryIds": ["combat", "academic", "strength", "speed", "sisters-special"],
+      "specialRuleIds": [],
+      "canGainExperience": true,
+      "isLargeCreature": false,
+      "ratingOverride": null,
+      "notes": "Up to three may be hired.",
+      "source": {
+        "sourceDocumentId": "mhr-sisters-of-sigmar",
+        "sourceUrl": "https://broheim.net/downloads/warbands/official/Sisters%20of%20Sigmar.pdf",
+        "pageRef": "Sisters of Sigmar p. 21",
+        "label": "Heroines"
+      }
+    },
+    {
+      "id": "augur",
+      "warbandTypeId": "sisters-of-sigmar",
+      "name": "Augur",
+      "category": "hero",
+      "minCount": 0,
+      "maxCount": 1,
+      "groupMinSize": null,
+      "groupMaxSize": null,
+      "hireCost": 25,
+      "startingExperience": 0,
+      "profile": { "M": 4, "WS": 2, "BS": 2, "S": 3, "T": 3, "W": 1, "I": 3, "A": 1, "Ld": 7 },
+      "equipmentListIds": ["sisters-augur-equipment"],
+      "skillCategoryIds": ["academic", "speed", "sisters-special"],
+      "specialRuleIds": ["blessed-sight"],
+      "canGainExperience": true,
+      "isLargeCreature": false,
+      "ratingOverride": null,
+      "notes": "Never wears armour.",
+      "source": {
+        "sourceDocumentId": "mhr-sisters-of-sigmar",
+        "sourceUrl": "https://broheim.net/downloads/warbands/official/Sisters%20of%20Sigmar.pdf",
+        "pageRef": "Sisters of Sigmar p. 21",
+        "label": "Heroines"
+      }
+    },
+    {
+      "id": "novice",
+      "warbandTypeId": "sisters-of-sigmar",
+      "name": "Novice",
+      "category": "henchman",
+      "minCount": 0,
+      "maxCount": 10,
+      "groupMinSize": 1,
+      "groupMaxSize": 5,
+      "hireCost": 15,
+      "startingExperience": 0,
+      "profile": { "M": 4, "WS": 2, "BS": 2, "S": 3, "T": 3, "W": 1, "I": 3, "A": 1, "Ld": 6 },
+      "equipmentListIds": ["sisters-henchwoman-equipment"],
+      "skillCategoryIds": [],
+      "specialRuleIds": [],
+      "canGainExperience": true,
+      "isLargeCreature": false,
+      "ratingOverride": null,
+      "notes": "Bought in groups of 1-5; maximum ten in the warband.",
+      "source": {
+        "sourceDocumentId": "mhr-sisters-of-sigmar",
+        "sourceUrl": "https://broheim.net/downloads/warbands/official/Sisters%20of%20Sigmar.pdf",
+        "pageRef": "Sisters of Sigmar p. 22",
+        "label": "Henchwomen"
+      }
+    },
+    {
+      "id": "sigmarite-sister",
+      "warbandTypeId": "sisters-of-sigmar",
+      "name": "Sigmarite Sister",
+      "category": "henchman",
+      "minCount": 0,
+      "maxCount": null,
+      "groupMinSize": 1,
+      "groupMaxSize": 5,
+      "hireCost": 25,
+      "startingExperience": 0,
+      "profile": { "M": 4, "WS": 3, "BS": 3, "S": 3, "T": 3, "W": 1, "I": 3, "A": 1, "Ld": 7 },
+      "equipmentListIds": ["sisters-henchwoman-equipment"],
+      "skillCategoryIds": [],
+      "specialRuleIds": [],
+      "canGainExperience": true,
+      "isLargeCreature": false,
+      "ratingOverride": null,
+      "notes": "Bought in groups of 1-5.",
+      "source": {
+        "sourceDocumentId": "mhr-sisters-of-sigmar",
+        "sourceUrl": "https://broheim.net/downloads/warbands/official/Sisters%20of%20Sigmar.pdf",
+        "pageRef": "Sisters of Sigmar p. 22",
+        "label": "Henchwomen"
+      }
+    }
+  ],
+  "equipmentLists": [
+    {
+      "id": "sisters-heroine-equipment",
+      "name": "Sisters of Sigmar Heroine Equipment List",
+      "warbandTypeId": "sisters-of-sigmar",
+      "allowedEquipmentItemIds": ["dagger", "mace", "hammer", "sigmarite-warhammer", "flail", "steel-whip", "double-handed-weapon", "sling", "light-armour", "heavy-armour", "shield", "buckler", "helmet", "holy-tome", "blessed-water", "holy-relic"],
+      "appliesToFighterTypeIds": ["sigmarite-matriarch", "sister-superior"],
+      "notes": "Includes heroine-only miscellaneous equipment."
+    },
+    {
+      "id": "sisters-augur-equipment",
+      "name": "Sisters of Sigmar Augur Equipment List",
+      "warbandTypeId": "sisters-of-sigmar",
+      "allowedEquipmentItemIds": ["dagger", "mace", "hammer", "sigmarite-warhammer", "flail", "steel-whip", "double-handed-weapon", "sling", "holy-tome", "blessed-water", "holy-relic"],
+      "appliesToFighterTypeIds": ["augur"],
+      "notes": "Augurs may choose Sisters weapons and heroine-only miscellaneous equipment, but never armour."
+    },
+    {
+      "id": "sisters-henchwoman-equipment",
+      "name": "Sisters of Sigmar Equipment List",
+      "warbandTypeId": "sisters-of-sigmar",
+      "allowedEquipmentItemIds": ["dagger", "mace", "hammer", "sigmarite-warhammer", "flail", "steel-whip", "double-handed-weapon", "sling", "light-armour", "heavy-armour", "shield", "buckler", "helmet"],
+      "appliesToFighterTypeIds": ["novice", "sigmarite-sister"],
+      "notes": "No heroine-only miscellaneous equipment."
+    }
+  ]
+}

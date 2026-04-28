@@ -1,0 +1,14 @@
+[
+  {
+    "id": "placeholder-hired-sword",
+    "name": "Hired Sword Template",
+    "hireFee": 0,
+    "upkeep": 0,
+    "availabilitySummary": "Placeholder record showing the data shape. Add reviewed hired swords from the core rules or supplements before enabling selection.",
+    "effectSummary": "Not selectable in normal roster creation.",
+    "sourceDocumentId": "mordheim-core-rules",
+    "sourceUrl": "https://www.broheim.net/downloads/rules/Mordheim%20Core%20Rules%20Printable.pdf",
+    "pageRef": "Core p. 108+",
+    "implementationStatus": "not_started"
+  }
+]

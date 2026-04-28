@@ -1,0 +1,77 @@
+[
+  {
+    "id": "starting-warband",
+    "name": "Starting a Warband",
+    "ruleCategory": "campaign_setup",
+    "summary": "A new warband normally begins with 500 gc, must recruit at least three warriors including a leader, and keeps unspent gold in treasury.",
+    "sourceDocumentId": "mordheim-core-rules",
+    "sourceUrl": "https://www.broheim.net/downloads/rules/Mordheim%20Core%20Rules%20Printable.pdf",
+    "pageRef": "Core p. 46",
+    "validationMetadata": {
+      "startingGoldDefault": 500,
+      "minimumWarriorsDefault": 3
+    }
+  },
+  {
+    "id": "weapon-use-limits",
+    "name": "Weapon and Armour Selection Limits",
+    "ruleCategory": "equipment_validation",
+    "summary": "A warrior can be armed from the appropriate equipment list with up to two close combat weapons besides the free dagger, up to two different missile weapons, and allowed armour. A brace of pistols counts as one missile weapon for this limit.",
+    "sourceDocumentId": "mordheim-core-rules",
+    "sourceUrl": "https://www.broheim.net/downloads/rules/Mordheim%20Core%20Rules%20Printable.pdf",
+    "pageRef": "Core p. 46",
+    "validationMetadata": {
+      "maxCloseCombatWeaponsExcludingFreeDagger": 2,
+      "maxMissileWeapons": 2,
+      "braceOfPistolsMissileSlots": 1
+    }
+  },
+  {
+    "id": "experience-advances",
+    "name": "Experience and Advances",
+    "ruleCategory": "campaign",
+    "summary": "Starting experience is recorded from the warband list; later experience can grant advances. Henchmen gain experience as a group.",
+    "sourceDocumentId": "mordheim-core-rules",
+    "sourceUrl": "https://www.broheim.net/downloads/rules/Mordheim%20Core%20Rules%20Printable.pdf",
+    "pageRef": "Core p. 82-83",
+    "validationMetadata": {
+      "henchmenExperienceSharedByGroup": true
+    }
+  },
+  {
+    "id": "skill-access",
+    "name": "Skill Access",
+    "ruleCategory": "skills",
+    "summary": "A hero may choose new skills only from skill lists available to that fighter type unless a special rule or campaign result grants access.",
+    "sourceDocumentId": "mordheim-core-rules",
+    "sourceUrl": "https://www.broheim.net/downloads/rules/Mordheim%20Core%20Rules%20Printable.pdf",
+    "pageRef": "Core p. 83-84",
+    "validationMetadata": {
+      "duplicateSkillAllowed": false
+    }
+  },
+  {
+    "id": "required-leader",
+    "name": "Required Leader",
+    "ruleCategory": "warband_composition",
+    "summary": "A starting warband must include the leader required by its warband list.",
+    "sourceDocumentId": "mordheim-core-rules",
+    "sourceUrl": "https://www.broheim.net/downloads/rules/Mordheim%20Core%20Rules%20Printable.pdf",
+    "pageRef": "Core p. 46",
+    "validationMetadata": {
+      "leaderRequired": true
+    }
+  },
+  {
+    "id": "warband-rating",
+    "name": "Warband Rating",
+    "ruleCategory": "rating",
+    "summary": "Base implementation uses number of active warriors times five, plus accumulated experience, with fighter-specific overrides where a rule says otherwise.",
+    "sourceDocumentId": "mordheim-core-rules",
+    "sourceUrl": "https://www.broheim.net/downloads/rules/Mordheim%20Core%20Rules%20Printable.pdf",
+    "pageRef": "Core campaign section",
+    "validationMetadata": {
+      "warriorMultiplier": 5
+    }
+  }
+]

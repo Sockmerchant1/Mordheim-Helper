@@ -1,0 +1,34 @@
+[
+  {
+    "id": "mordheim-core-rules",
+    "title": "Mordheim Core Rules Printable",
+    "url": "https://www.broheim.net/downloads/rules/Mordheim%20Core%20Rules%20Printable.pdf",
+    "type": "core_rules",
+    "broheimGrade": "1a",
+    "notes": "Primary core rules reference. The app stores concise mechanics and page references, not reproduced rulebook text."
+  },
+  {
+    "id": "mhr-witch-hunters",
+    "title": "Witch Hunters",
+    "url": "https://broheim.net/downloads/warbands/official/Witch%20Hunters.pdf",
+    "type": "warband_pdf",
+    "broheimGrade": "1a",
+    "notes": "Official Broheim-hosted Witch Hunters warband PDF from the Mordheim rulebook set."
+  },
+  {
+    "id": "mhr-mercenaries",
+    "title": "Mercenaries",
+    "url": "https://broheim.net/downloads/warbands/official/Mercenaries.pdf",
+    "type": "warband_pdf",
+    "broheimGrade": "1a",
+    "notes": "Official Broheim-hosted Mercenaries PDF covering Reiklanders, Middenheimers and Marienburgers."
+  },
+  {
+    "id": "mhr-sisters-of-sigmar",
+    "title": "Sisters of Sigmar",
+    "url": "https://broheim.net/downloads/warbands/official/Sisters%20of%20Sigmar.pdf",
+    "type": "warband_pdf",
+    "broheimGrade": "1a",
+    "notes": "Official Broheim-hosted Sisters of Sigmar warband PDF from the Mordheim rulebook set."
+  }
+]
