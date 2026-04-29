@@ -259,6 +259,89 @@
     "relatedRuleIds": []
   },
   {
+    "id": "necromancy",
+    "name": "Necromancy",
+    "effectSummary": "The Necromancer uses the Necromancy spell list and may learn spells as described by the core magic rules.",
+    "appliesTo": "Necromancer.",
+    "sourceDocumentId": "mordheim-core-rules",
+    "sourceUrl": "https://www.broheim.net/downloads/rules/Mordheim%20Core%20Rules%20Printable.pdf",
+    "pageRef": "Core p. 40-42 / Undead p. 25",
+    "restrictions": "Necromancers and models explicitly granted Necromancy access.",
+    "relatedRuleIds": ["spellcaster", "necromancy-lifestealer", "necromancy-re-animation", "necromancy-death-vision", "necromancy-spell-of-doom", "necromancy-call-of-vanhel", "necromancy-spell-of-awakening"]
+  },
+  {
+    "id": "necromancy-lifestealer",
+    "name": "Lifestealer",
+    "effectSummary": "Difficulty 10 spell. Choose one model within 6 inches; it suffers one wound with no save, and the Necromancer gains one Wound for the battle. It does not affect Possessed or Undead models.",
+    "appliesTo": "Necromancy spell list.",
+    "sourceDocumentId": "mordheim-core-rules",
+    "sourceUrl": "https://www.broheim.net/downloads/rules/Mordheim%20Core%20Rules%20Printable.pdf",
+    "pageRef": "Core p. 41 / Necromancy",
+    "restrictions": "Necromancer with Necromancy.",
+    "relatedRuleIds": ["necromancy"],
+    "validation": { "selectableAs": "spell", "allowedFighterTypeIds": ["necromancer"], "requiredSpecialRuleIds": ["necromancy"] }
+  },
+  {
+    "id": "necromancy-re-animation",
+    "name": "Re-Animation",
+    "effectSummary": "Difficulty 5 spell. One Zombie taken out of action in the previous hand-to-hand combat or Shooting phase returns within 6 inches of the Necromancer, but not directly into hand-to-hand combat.",
+    "appliesTo": "Necromancy spell list.",
+    "sourceDocumentId": "mordheim-core-rules",
+    "sourceUrl": "https://www.broheim.net/downloads/rules/Mordheim%20Core%20Rules%20Printable.pdf",
+    "pageRef": "Core p. 41 / Necromancy",
+    "restrictions": "Necromancer with Necromancy.",
+    "relatedRuleIds": ["necromancy", "zombie"],
+    "validation": { "selectableAs": "spell", "allowedFighterTypeIds": ["necromancer"], "requiredSpecialRuleIds": ["necromancy"] }
+  },
+  {
+    "id": "necromancy-death-vision",
+    "name": "Death Vision",
+    "effectSummary": "Difficulty 6 spell. The Necromancer causes Fear for the duration of the battle.",
+    "appliesTo": "Necromancy spell list.",
+    "sourceDocumentId": "mordheim-core-rules",
+    "sourceUrl": "https://www.broheim.net/downloads/rules/Mordheim%20Core%20Rules%20Printable.pdf",
+    "pageRef": "Core p. 41 / Necromancy",
+    "restrictions": "Necromancer with Necromancy.",
+    "relatedRuleIds": ["necromancy", "fear"],
+    "validation": { "selectableAs": "spell", "allowedFighterTypeIds": ["necromancer"], "requiredSpecialRuleIds": ["necromancy"] }
+  },
+  {
+    "id": "necromancy-spell-of-doom",
+    "name": "Spell of Doom",
+    "effectSummary": "Difficulty 9 spell. Choose one enemy within 12 inches; it must roll equal to or under its Strength on a D6 or suffer an Injury table roll.",
+    "appliesTo": "Necromancy spell list.",
+    "sourceDocumentId": "mordheim-core-rules",
+    "sourceUrl": "https://www.broheim.net/downloads/rules/Mordheim%20Core%20Rules%20Printable.pdf",
+    "pageRef": "Core p. 41 / Necromancy",
+    "restrictions": "Necromancer with Necromancy.",
+    "relatedRuleIds": ["necromancy"],
+    "validation": { "selectableAs": "spell", "allowedFighterTypeIds": ["necromancer"], "requiredSpecialRuleIds": ["necromancy"] }
+  },
+  {
+    "id": "necromancy-call-of-vanhel",
+    "name": "Call of Vanhel",
+    "effectSummary": "Difficulty 6 spell. One Zombie or Dire Wolf within 6 inches may immediately move up to its Movement distance; if it reaches an enemy, it counts as charging.",
+    "appliesTo": "Necromancy spell list.",
+    "sourceDocumentId": "mordheim-core-rules",
+    "sourceUrl": "https://www.broheim.net/downloads/rules/Mordheim%20Core%20Rules%20Printable.pdf",
+    "pageRef": "Core p. 41 / Necromancy",
+    "restrictions": "Necromancer with Necromancy.",
+    "relatedRuleIds": ["necromancy", "zombie", "dire-wolf"],
+    "validation": { "selectableAs": "spell", "allowedFighterTypeIds": ["necromancer"], "requiredSpecialRuleIds": ["necromancy"] }
+  },
+  {
+    "id": "necromancy-spell-of-awakening",
+    "name": "Spell of Awakening",
+    "effectSummary": "Automatic spell. If an enemy Hero dies after battle, the Necromancer may raise him as a Zombie retaining profile, weapons and armour, but not equipment, skills, running or future experience.",
+    "appliesTo": "Necromancy spell list.",
+    "sourceDocumentId": "mordheim-core-rules",
+    "sourceUrl": "https://www.broheim.net/downloads/rules/Mordheim%20Core%20Rules%20Printable.pdf",
+    "pageRef": "Core p. 41-42 / Necromancy",
+    "restrictions": "Necromancer with Necromancy; resolved after battle when the enemy Hero is killed.",
+    "relatedRuleIds": ["necromancy", "zombie", "no-brain", "may-not-run"],
+    "validation": { "selectableAs": "spell", "allowedFighterTypeIds": ["necromancer"], "requiredSpecialRuleIds": ["necromancy"] }
+  },
+  {
     "id": "nurgle-rituals",
     "name": "Rituals of Nurgle",
     "effectSummary": "The Carnival Master uses the Rituals of Nurgle spell list.",
@@ -394,6 +477,83 @@
     "sourceUrl": "https://www.broheim.net/downloads/rules/Mordheim%20Core%20Rules%20Printable.pdf",
     "pageRef": "Core psychology rules",
     "restrictions": "Use only when a fighter or effect grants Fear.",
+    "relatedRuleIds": []
+  },
+  {
+    "id": "undead-immune-to-psychology",
+    "name": "Immune to Psychology",
+    "effectSummary": "The model is not affected by psychology such as Fear and never leaves combat because of psychology.",
+    "appliesTo": "Vampires, Zombies and Dire Wolves.",
+    "sourceDocumentId": "mhr-undead",
+    "sourceUrl": "https://broheim.net/downloads/warbands/official/Undead.pdf",
+    "pageRef": "Undead p. 25-26",
+    "restrictions": "Applies only to the listed Undead fighter entries.",
+    "relatedRuleIds": ["fear"]
+  },
+  {
+    "id": "immune-to-poison",
+    "name": "Immune to Poison",
+    "effectSummary": "The model is not affected by poison.",
+    "appliesTo": "Vampires, Zombies and Dire Wolves.",
+    "sourceDocumentId": "mhr-undead",
+    "sourceUrl": "https://broheim.net/downloads/warbands/official/Undead.pdf",
+    "pageRef": "Undead p. 25-26",
+    "restrictions": "Applies only where the fighter entry grants this rule.",
+    "relatedRuleIds": []
+  },
+  {
+    "id": "no-pain",
+    "name": "No Pain",
+    "effectSummary": "Treat a stunned result on the Injury chart as knocked down instead.",
+    "appliesTo": "Vampires, Zombies and Dire Wolves.",
+    "sourceDocumentId": "mhr-undead",
+    "sourceUrl": "https://broheim.net/downloads/warbands/official/Undead.pdf",
+    "pageRef": "Undead p. 25-26",
+    "restrictions": "Applies only where the fighter entry grants this rule.",
+    "relatedRuleIds": ["battle-stunned", "battle-knocked-down"]
+  },
+  {
+    "id": "may-not-run",
+    "name": "May Not Run",
+    "effectSummary": "The model may not run, but may charge normally.",
+    "appliesTo": "Zombies and Dire Wolves.",
+    "sourceDocumentId": "mhr-undead",
+    "sourceUrl": "https://broheim.net/downloads/warbands/official/Undead.pdf",
+    "pageRef": "Undead p. 26",
+    "restrictions": "Applies only where the fighter entry grants this rule.",
+    "relatedRuleIds": []
+  },
+  {
+    "id": "no-brain",
+    "name": "No Brain",
+    "effectSummary": "The model never gains experience.",
+    "appliesTo": "Zombies.",
+    "sourceDocumentId": "mhr-undead",
+    "sourceUrl": "https://broheim.net/downloads/warbands/official/Undead.pdf",
+    "pageRef": "Undead p. 26",
+    "restrictions": "Zombies only.",
+    "relatedRuleIds": ["experience-advances"]
+  },
+  {
+    "id": "unliving",
+    "name": "Unliving",
+    "effectSummary": "The model never gains experience.",
+    "appliesTo": "Dire Wolves.",
+    "sourceDocumentId": "mhr-undead",
+    "sourceUrl": "https://broheim.net/downloads/warbands/official/Undead.pdf",
+    "pageRef": "Undead p. 26",
+    "restrictions": "Dire Wolves only.",
+    "relatedRuleIds": ["experience-advances"]
+  },
+  {
+    "id": "dire-wolf-charge",
+    "name": "Charge",
+    "effectSummary": "Dire Wolves fight with 2 Attacks instead of 1 during a turn in which they charge.",
+    "appliesTo": "Dire Wolves.",
+    "sourceDocumentId": "mhr-undead",
+    "sourceUrl": "https://broheim.net/downloads/warbands/official/Undead.pdf",
+    "pageRef": "Undead p. 26",
+    "restrictions": "Dire Wolves only, during the turn they charge.",
     "relatedRuleIds": []
   },
   {

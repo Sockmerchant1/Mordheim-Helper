@@ -33,7 +33,7 @@
       "isOfficial": true,
       "sourceCode": "EIF",
       "sourceUrl": "https://broheim.net/downloads/rules/Empire%20In%20Flames.pdf#page=51",
-      "implementationStatus": "implemented"
+      "implementationStatus": "tested"
     },
     {
       "id": "cult-of-the-possessed",
@@ -154,7 +154,7 @@
       "isOfficial": true,
       "sourceCode": "MHR",
       "sourceUrl": "https://broheim.net/downloads/warbands/official/Undead.pdf",
-      "implementationStatus": "not_started"
+      "implementationStatus": "tested"
     },
     {
       "id": "witch-hunters",

@@ -2,10 +2,13 @@ import { rosterSchema } from "../rules/schemas";
 import type { Roster } from "../rules/types";
 
 const localKey = "mordheim.rosters";
+const apiBaseUrl = (import.meta.env.VITE_ROSTER_API_BASE_URL ?? "").replace(/\/$/, "");
+const storageMode = import.meta.env.VITE_ROSTER_STORAGE ?? "auto";
 
 export async function listRosters(): Promise<Roster[]> {
+  if (!shouldUseRemoteApi()) return readLocal();
   try {
-    const response = await fetch("/api/rosters");
+    const response = await fetch(apiUrl("/api/rosters"));
     if (!response.ok) throw new Error(response.statusText);
     return rosterSchema.array().parse(await response.json());
   } catch {
@@ -15,8 +18,12 @@ export async function listRosters(): Promise<Roster[]> {
 
 export async function saveRoster(roster: Roster): Promise<Roster> {
   const parsed = rosterSchema.parse({ ...roster, updatedAt: new Date().toISOString() });
+  if (!shouldUseRemoteApi()) {
+    writeLocal(upsertLocal(parsed));
+    return parsed;
+  }
   try {
-    const response = await fetch(parsed.id ? `/api/rosters/${parsed.id}` : "/api/rosters", {
+    const response = await fetch(apiUrl(parsed.id ? `/api/rosters/${parsed.id}` : "/api/rosters"), {
       method: parsed.id ? "PUT" : "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(parsed)
@@ -32,11 +39,26 @@ export async function saveRoster(roster: Roster): Promise<Roster> {
 }
 
 export async function deleteRoster(id: string): Promise<void> {
-  try {
-    await fetch(`/api/rosters/${id}`, { method: "DELETE" });
-  } finally {
+  if (shouldUseRemoteApi()) {
+    try {
+      await fetch(apiUrl(`/api/rosters/${id}`), { method: "DELETE" });
+    } finally {
+      writeLocal(readLocal().filter((roster) => roster.id !== id));
+    }
+  } else {
     writeLocal(readLocal().filter((roster) => roster.id !== id));
   }
+}
+
+function shouldUseRemoteApi() {
+  if (storageMode === "local") return false;
+  if (storageMode === "remote") return true;
+  if (apiBaseUrl) return true;
+  return ["localhost", "127.0.0.1"].includes(window.location.hostname);
+}
+
+function apiUrl(path: string) {
+  return `${apiBaseUrl}${path}`;
 }
 
 function upsertLocal(roster: Roster): Roster[] {

@@ -252,15 +252,23 @@ export function validateRoster(roster: Roster, rulesDb: RulesDb): ValidationIssu
       fighterType.validation.requiredOneOfEquipmentItemIds.length > 0 &&
       !fighterType.validation.requiredOneOfEquipmentItemIds.some((itemId) => member.equipment.includes(itemId))
     ) {
+      const requiredItems = fighterType.validation.requiredOneOfEquipmentItemIds
+        .map((itemId) => findEquipment(rulesDb, itemId))
+        .filter((item): item is EquipmentItem => Boolean(item));
+      const isNurgleBlessing = requiredItems.some((item) => item.validation.costGroupId === "nurgle-blessing");
+      const requiredLabel = isNurgleBlessing ? "at least one Blessing of Nurgle" : "a required option";
+      const availableOptions = requiredItems.map((item) => item.name).join(", ");
       issues.push(issue(
         "error",
         "REQUIRED_EQUIPMENT_OPTION",
-        `${fighterType.name} must choose a required option.`,
-        "This fighter type has a rules-data requirement to include at least one item from a specific list.",
+        `${fighterType.name} must choose ${requiredLabel}.`,
+        availableOptions
+          ? `Choose one of: ${availableOptions}.`
+          : "This fighter type has a rules-data requirement to include at least one item from a specific list.",
         member.id,
         "equipment",
         fighterType.source,
-        "Add one of the required options."
+        isNurgleBlessing ? "Add a Blessing of Nurgle." : "Add one of the required options."
       ));
     }
 

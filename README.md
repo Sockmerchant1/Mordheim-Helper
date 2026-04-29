@@ -2,7 +2,7 @@
 
 An unofficial local-first Mordheim roster and campaign helper. The app separates canonical rules data from player roster state so rosters reference structured records for fighter types, equipment, skills, special rules, source documents and campaign log entries.
 
-The first fully seeded warbands are **Witch Hunters**, the official **Mercenaries** variants, **Sisters of Sigmar**, **Carnival of Chaos**, and **Skaven**. The attached workbook was used as a roster layout and data-entry reference only; Broheim-hosted rule documents are treated as the source references.
+The first fully seeded warbands are **Witch Hunters**, the official **Mercenaries** variants, **Sisters of Sigmar**, **Carnival of Chaos**, **Skaven**, and **Undead**. The attached workbook was used as a roster layout and data-entry reference only; Broheim-hosted rule documents are treated as the source references.
 
 ## Stack
 
@@ -13,9 +13,17 @@ The first fully seeded warbands are **Witch Hunters**, the official **Mercenarie
 - Playwright UI flow specs
 - Simple CSS for responsive and printable roster layouts
 
+## Deploy To Netlify
+
+This app is ready to deploy to Netlify as a static Vite site. Netlify uses `netlify.toml`, runs `npm run build`, and publishes `dist`.
+
+On Netlify, roster data is saved in each player's browser storage. No paid database or server is required, but players should use JSON export/import to back up or move rosters between devices.
+
+See `NETLIFY_DEPLOY.md` for step-by-step setup and the GitHub upload checklist.
+
 ## Run Locally
 
-Requires Node 24+ because the local API uses `node:sqlite`.
+Requires Node 24+ because the local SQLite API uses `node:sqlite`. The Netlify deployment does not run that local API; it uses browser storage instead.
 
 ```bash
 npm install
@@ -34,7 +42,7 @@ npm run typecheck
 
 If Playwright browsers are not installed yet, run `npx playwright install` once before `npm run test:e2e`.
 
-This workspace blocks package child executables, so Vite/Vitest/Playwright cannot launch here. I added a Node-native verification path that exercises the same core Witch Hunter rules assertions:
+This workspace blocks package child executables, so Vite/Vitest/Playwright cannot launch here. I added a Node-native verification path that exercises the implemented warband rules:
 
 ```bash
 npm run test:node
@@ -93,6 +101,7 @@ Hired swords are seeded from local data and can be hired from the Roster Editor.
 - Sisters of Sigmar
 - Carnival of Chaos
 - Skaven
+- Undead
 
 ## Adding A Warband
 

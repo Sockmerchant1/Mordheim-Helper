@@ -83,6 +83,18 @@ import {
   tooManySkavenWarriors,
   validSkaven
 } from "../tests/fixtures/skavenRosters.ts";
+import {
+  direWolfWithWeapon,
+  ghoulWithArmour,
+  invalidUndeadSkill,
+  undeadNoVampire,
+  undeadTooManyDireWolves,
+  undeadTooManyDregs,
+  undeadTooManyWarriors,
+  undeadTwoVampires,
+  validUndead,
+  zombieWithWeapon
+} from "../tests/fixtures/undeadRosters.ts";
 
 const rulesDb = await loadRulesDb();
 
@@ -304,6 +316,44 @@ const adeptSpells = getAllowedSpecialRules(skavenRoster.members[0], skavenRoster
 assert.equal(sorcererSpells.find((option) => option.item.id === "horned-rat-warpfire")?.allowed, true);
 assert.equal(adeptSpells.find((option) => option.item.id === "horned-rat-warpfire")?.allowed, false);
 
+assert.ok(allowedOfficialWarbands.includes("undead"));
+assert.deepEqual(errorCodes(validUndead()), []);
+assert.equal(calculateRosterCost(validUndead(), rulesDb), 310);
+assert.equal(calculateWarbandRating(validUndead(), rulesDb), 68);
+assert.ok(codes(undeadNoVampire()).includes("REQUIRED_LEADER"));
+assert.ok(codes(undeadTwoVampires()).includes("REQUIRED_LEADER"));
+assert.ok(codes(undeadTooManyWarriors()).includes("MAX_WARRIORS"));
+assert.ok(codes(undeadTooManyDregs()).includes("FIGHTER_MAX_COUNT"));
+assert.ok(codes(undeadTooManyDireWolves()).includes("FIGHTER_MAX_COUNT"));
+assert.ok(codes(zombieWithWeapon()).includes("INVALID_EQUIPMENT"));
+assert.ok(codes(ghoulWithArmour()).includes("INVALID_EQUIPMENT"));
+assert.ok(codes(direWolfWithWeapon()).includes("INVALID_EQUIPMENT"));
+assert.ok(codes(invalidUndeadSkill()).includes("INVALID_SKILL"));
+
+const undeadRoster = validUndead();
+const vampireOptions = getAllowedEquipment(undeadRoster.members[0], undeadRoster, rulesDb);
+const zombieOptions = getAllowedEquipment(undeadRoster.members[3], undeadRoster, rulesDb);
+assert.equal(vampireOptions.find((option) => option.item.id === "halberd")?.allowed, true);
+assert.equal(vampireOptions.find((option) => option.item.id === "pistol")?.allowed, false);
+assert.equal(zombieOptions.find((option) => option.item.id === "dagger")?.allowed, false);
+
+const vampireSkills = getAllowedSkills(undeadRoster.members[0], undeadRoster, rulesDb);
+const necromancerSkills = getAllowedSkills(undeadRoster.members[1], undeadRoster, rulesDb);
+const dregSkills = getAllowedSkills(undeadRoster.members[2], undeadRoster, rulesDb);
+assert.equal(vampireSkills.find((option) => option.item.id === "mighty-blow")?.allowed, true);
+assert.equal(vampireSkills.find((option) => option.item.id === "quick-shot")?.allowed, false);
+assert.equal(necromancerSkills.find((option) => option.item.id === "sorcery")?.allowed, true);
+assert.equal(necromancerSkills.find((option) => option.item.id === "mighty-blow")?.allowed, false);
+assert.equal(dregSkills.find((option) => option.item.id === "mighty-blow")?.allowed, true);
+assert.equal(dregSkills.find((option) => option.item.id === "step-aside")?.allowed, false);
+assert.equal(rulesDb.specialRules.find((rule) => rule.id === "necromancy")?.sourceDocumentId, "mordheim-core-rules");
+assert.ok(rulesDb.specialRules.find((rule) => rule.id === "necromancy")?.relatedRuleIds.includes("necromancy-lifestealer"));
+assert.equal(rulesDb.specialRules.find((rule) => rule.id === "no-pain")?.sourceDocumentId, "mhr-undead");
+const necromancySpells = getAllowedSpecialRules(undeadRoster.members[1], undeadRoster, rulesDb);
+const vampireSpells = getAllowedSpecialRules(undeadRoster.members[0], undeadRoster, rulesDb);
+assert.equal(necromancySpells.find((option) => option.item.id === "necromancy-lifestealer")?.allowed, true);
+assert.equal(vampireSpells.find((option) => option.item.id === "necromancy-lifestealer")?.allowed, false);
+
 console.log("Rules engine verification passed.");
 
 function codes(roster) {
@@ -317,7 +367,7 @@ function errorCodes(roster) {
 }
 
 async function loadRulesDb() {
-  const [sourceDocuments, equipmentItems, skillSeed, specialRules, hiredSwords, ruleReferences, witchHunters, mercenaries, sisters, carnival, skaven] = await Promise.all([
+  const [sourceDocuments, equipmentItems, skillSeed, specialRules, hiredSwords, ruleReferences, witchHunters, mercenaries, sisters, carnival, skaven, undead] = await Promise.all([
     readJson("../src/data/sources.json"),
     readJson("../src/data/equipment.json"),
     readJson("../src/data/skills.json"),
@@ -328,19 +378,21 @@ async function loadRulesDb() {
     readJson("../src/data/warbands/mercenaries.json"),
     readJson("../src/data/warbands/sisters-of-sigmar.json"),
     readJson("../src/data/warbands/carnival-of-chaos.json"),
-    readJson("../src/data/warbands/skaven.json")
+    readJson("../src/data/warbands/skaven.json"),
+    readJson("../src/data/warbands/undead.json")
   ]);
   const warbandSeed = warbandSeedSchema.parse(witchHunters);
   const sistersSeed = warbandSeedSchema.parse(sisters);
   const carnivalSeed = warbandSeedSchema.parse(carnival);
   const skavenSeed = warbandSeedSchema.parse(skaven);
+  const undeadSeed = warbandSeedSchema.parse(undead);
   const mercenarySeed = warbandSeedCollectionSchema.parse(mercenaries);
   return rulesDbSchema.parse({
     sourceDocuments,
-    warbandTypes: [warbandSeed.warbandType, sistersSeed.warbandType, carnivalSeed.warbandType, skavenSeed.warbandType, ...mercenarySeed.warbandTypes],
-    fighterTypes: [...warbandSeed.fighterTypes, ...sistersSeed.fighterTypes, ...carnivalSeed.fighterTypes, ...skavenSeed.fighterTypes, ...mercenarySeed.fighterTypes],
+    warbandTypes: [warbandSeed.warbandType, sistersSeed.warbandType, carnivalSeed.warbandType, skavenSeed.warbandType, undeadSeed.warbandType, ...mercenarySeed.warbandTypes],
+    fighterTypes: [...warbandSeed.fighterTypes, ...sistersSeed.fighterTypes, ...carnivalSeed.fighterTypes, ...skavenSeed.fighterTypes, ...undeadSeed.fighterTypes, ...mercenarySeed.fighterTypes],
     equipmentItems,
-    equipmentLists: [...warbandSeed.equipmentLists, ...sistersSeed.equipmentLists, ...carnivalSeed.equipmentLists, ...skavenSeed.equipmentLists, ...mercenarySeed.equipmentLists],
+    equipmentLists: [...warbandSeed.equipmentLists, ...sistersSeed.equipmentLists, ...carnivalSeed.equipmentLists, ...skavenSeed.equipmentLists, ...undeadSeed.equipmentLists, ...mercenarySeed.equipmentLists],
     skillCategories: skillSeed.categories,
     skills: skillSeed.skills,
     specialRules,

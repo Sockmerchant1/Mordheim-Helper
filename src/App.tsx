@@ -947,6 +947,7 @@ function PlayFighterCard({
   const equipmentRules = equipmentRuleIds
     .map((id) => rulesDb.specialRules.find((rule) => rule.id === id))
     .filter((rule): rule is SpecialRule => Boolean(rule));
+  const statusRule = ruleRecordForBattleStatus(battleState.status);
 
   return (
     <article className={`play-fighter-card status-${battleState.status}`}>
@@ -1016,7 +1017,7 @@ function PlayFighterCard({
       <PlayChipSection title="Injuries" items={member.injuries.map(ruleRecordForInjury)} onOpenRule={onOpenRule} />
       <PlayChipSection
         title="Special Rules"
-        items={[...passiveRules, ...equipmentRules].map(ruleRecordForSpecialRule)}
+        items={[...(statusRule ? [statusRule] : []), ...[...passiveRules, ...equipmentRules].map(ruleRecordForSpecialRule)]}
         onOpenRule={onOpenRule}
       />
       {member.notes && (
@@ -2016,6 +2017,7 @@ function MemberCard({
   const passiveRules = specialRules.filter((rule) => !rule.validation.selectableAs);
   const castableOptions = getAllowedSpecialRules(member, roster, rulesDb);
   const hasCastableChoices = castableRules.length > 0 || castableOptions.some((option) => option.allowed);
+  const hasRequiredEquipmentChoices = fighterType.validation.requiredOneOfEquipmentItemIds.length > 0;
 
   return (
     <article className="member-card">
@@ -2067,6 +2069,10 @@ function MemberCard({
 
       <ProfileTable base={fighterType.profile} current={member.currentProfile} onChange={(profile) => onChange({ ...member, currentProfile: profile })} />
 
+      {hasRequiredEquipmentChoices && (
+        <RequiredEquipmentOptionPicker roster={roster} member={member} fighterType={fighterType} onChange={onChange} onLookup={onLookup} />
+      )}
+
       <EquipmentPicker roster={roster} member={member} showIllegalOptions={showIllegalOptions} onChange={onChange} onLookup={onLookup} />
 
       <div className="member-detail-grid">
@@ -2109,6 +2115,78 @@ function MemberCard({
         </div>
       )}
     </article>
+  );
+}
+
+function RequiredEquipmentOptionPicker({
+  roster,
+  member,
+  fighterType,
+  onChange,
+  onLookup
+}: {
+  roster: Roster;
+  member: RosterMember;
+  fighterType: FighterType;
+  onChange: (member: RosterMember) => void;
+  onLookup: (item: LookupItem) => void;
+}) {
+  const requiredIds = fighterType.validation.requiredOneOfEquipmentItemIds;
+  const requiredItems = requiredIds
+    .map((id) => rulesDb.equipmentItems.find((item) => item.id === id))
+    .filter((item): item is EquipmentItem => Boolean(item));
+  const selectedItems = member.equipment
+    .map((id) => requiredItems.find((item) => item.id === id))
+    .filter((item): item is EquipmentItem => Boolean(item));
+  const allowedOptions = getAllowedEquipment(member, roster, rulesDb)
+    .filter((option) => requiredIds.includes(option.item.id) && option.allowed && !member.equipment.includes(option.item.id));
+  const isNurgleBlessing = requiredItems.some((item) => item.validation.costGroupId === "nurgle-blessing");
+  const title = isNurgleBlessing ? "Blessings of Nurgle" : "Required options";
+  const placeholder = isNurgleBlessing ? "Add Blessing of Nurgle" : "Add required option";
+  const helpText = isNurgleBlessing
+    ? "Tainted Ones must start with at least one Blessing. Additional Blessings are allowed and their paid cost is included in the roster total."
+    : "This fighter type must include at least one of these paid options.";
+
+  function removeItem(itemId: string) {
+    onChange({ ...member, equipment: member.equipment.filter((id, index) => id !== itemId || index !== member.equipment.indexOf(itemId)) });
+  }
+
+  return (
+    <section className="required-option-picker">
+      <div className="section-heading compact">
+        <div>
+          <h3>{title}</h3>
+          <p>{helpText}</p>
+        </div>
+      </div>
+      <div className="chip-list">
+        {selectedItems.map((item) => (
+          <span className="choice-chip" key={item.id}>
+            <button className="chip" onClick={() => onLookup({ type: "equipment", item })}>
+              {item.name} ({item.cost} gc)
+            </button>
+            <button className="mini-remove" aria-label={`Remove ${item.name}`} onClick={() => removeItem(item.id)}>
+              Remove
+            </button>
+          </span>
+        ))}
+        {selectedItems.length === 0 && <span className="muted">None selected</span>}
+      </div>
+      <select
+        value=""
+        onChange={(event) => {
+          const item = requiredItems.find((entry) => entry.id === event.target.value);
+          if (item && !member.equipment.includes(item.id)) onChange({ ...member, equipment: [...member.equipment, item.id] });
+        }}
+      >
+        <option value="">{placeholder}</option>
+        {allowedOptions.map((option) => (
+          <option value={option.item.id} key={option.item.id}>
+            {option.item.name} - {option.item.cost} gc
+          </option>
+        ))}
+      </select>
+    </section>
   );
 }
 
@@ -2666,6 +2744,17 @@ function ruleRecordForInjury(injury: string): RuleLookupRecord {
     tags: ["injury"],
     aliases: [injury]
   };
+}
+
+function ruleRecordForBattleStatus(status: BattleStatus): RuleLookupRecord | undefined {
+  const statusRuleIds: Partial<Record<BattleStatus, string>> = {
+    hidden: "battle-hidden",
+    knocked_down: "battle-knocked-down",
+    stunned: "battle-stunned",
+    out_of_action: "battle-out-of-action"
+  };
+  const ruleId = statusRuleIds[status];
+  return ruleId ? rulesLookupRecords.find((record) => record.id === ruleId) : undefined;
 }
 
 function ruleMatchesQuery(record: RuleLookupRecord, normalizedQuery: string) {
