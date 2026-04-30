@@ -95,6 +95,7 @@ import {
   validUndead,
   zombieWithWeapon
 } from "../tests/fixtures/undeadRosters.ts";
+<<<<<<< HEAD
 import {
   ballAndChainWithShield,
   ballAndChainWithoutMushrooms,
@@ -112,6 +113,8 @@ import {
   tooManyTrolls,
   validOrcMob
 } from "../tests/fixtures/orcRosters.ts";
+=======
+>>>>>>> 328b6e03282942ae3706ee23d2d0604fd9286135
 
 const rulesDb = await loadRulesDb();
 
@@ -371,6 +374,7 @@ const vampireSpells = getAllowedSpecialRules(undeadRoster.members[0], undeadRost
 assert.equal(necromancySpells.find((option) => option.item.id === "necromancy-lifestealer")?.allowed, true);
 assert.equal(vampireSpells.find((option) => option.item.id === "necromancy-lifestealer")?.allowed, false);
 
+<<<<<<< HEAD
 assert.ok(allowedOfficialWarbands.includes("orc-mob"));
 assert.deepEqual(errorCodes(validOrcMob()), []);
 assert.equal(calculateRosterCost(validOrcMob(), rulesDb), 290);
@@ -419,6 +423,8 @@ const bossSpells = getAllowedSpecialRules(orcRoster.members[0], orcRoster, rules
 assert.equal(shamanSpells.find((option) => option.item.id === "waaagh-zzap")?.allowed, true);
 assert.equal(bossSpells.find((option) => option.item.id === "waaagh-zzap")?.allowed, false);
 
+=======
+>>>>>>> 328b6e03282942ae3706ee23d2d0604fd9286135
 console.log("Rules engine verification passed.");
 
 function codes(roster) {
@@ -432,7 +438,11 @@ function errorCodes(roster) {
 }
 
 async function loadRulesDb() {
+<<<<<<< HEAD
   const [sourceDocuments, equipmentItems, skillSeed, specialRules, hiredSwords, ruleReferences, witchHunters, mercenaries, sisters, carnival, skaven, undead, orcMob] = await Promise.all([
+=======
+  const [sourceDocuments, equipmentItems, skillSeed, specialRules, hiredSwords, ruleReferences, witchHunters, mercenaries, sisters, carnival, skaven, undead] = await Promise.all([
+>>>>>>> 328b6e03282942ae3706ee23d2d0604fd9286135
     readJson("../src/data/sources.json"),
     readJson("../src/data/equipment.json"),
     readJson("../src/data/skills.json"),
@@ -444,14 +454,19 @@ async function loadRulesDb() {
     readJson("../src/data/warbands/sisters-of-sigmar.json"),
     readJson("../src/data/warbands/carnival-of-chaos.json"),
     readJson("../src/data/warbands/skaven.json"),
+<<<<<<< HEAD
     readJson("../src/data/warbands/undead.json"),
     readJson("../src/data/warbands/orc-mob.json")
+=======
+    readJson("../src/data/warbands/undead.json")
+>>>>>>> 328b6e03282942ae3706ee23d2d0604fd9286135
   ]);
   const warbandSeed = warbandSeedSchema.parse(witchHunters);
   const sistersSeed = warbandSeedSchema.parse(sisters);
   const carnivalSeed = warbandSeedSchema.parse(carnival);
   const skavenSeed = warbandSeedSchema.parse(skaven);
   const undeadSeed = warbandSeedSchema.parse(undead);
+<<<<<<< HEAD
   const orcMobSeed = warbandSeedSchema.parse(orcMob);
   const mercenarySeed = warbandSeedCollectionSchema.parse(mercenaries);
   return rulesDbSchema.parse({
@@ -460,6 +475,15 @@ async function loadRulesDb() {
     fighterTypes: [...warbandSeed.fighterTypes, ...sistersSeed.fighterTypes, ...carnivalSeed.fighterTypes, ...skavenSeed.fighterTypes, ...undeadSeed.fighterTypes, ...orcMobSeed.fighterTypes, ...mercenarySeed.fighterTypes],
     equipmentItems,
     equipmentLists: [...warbandSeed.equipmentLists, ...sistersSeed.equipmentLists, ...carnivalSeed.equipmentLists, ...skavenSeed.equipmentLists, ...undeadSeed.equipmentLists, ...orcMobSeed.equipmentLists, ...mercenarySeed.equipmentLists],
+=======
+  const mercenarySeed = warbandSeedCollectionSchema.parse(mercenaries);
+  return rulesDbSchema.parse({
+    sourceDocuments,
+    warbandTypes: [warbandSeed.warbandType, sistersSeed.warbandType, carnivalSeed.warbandType, skavenSeed.warbandType, undeadSeed.warbandType, ...mercenarySeed.warbandTypes],
+    fighterTypes: [...warbandSeed.fighterTypes, ...sistersSeed.fighterTypes, ...carnivalSeed.fighterTypes, ...skavenSeed.fighterTypes, ...undeadSeed.fighterTypes, ...mercenarySeed.fighterTypes],
+    equipmentItems,
+    equipmentLists: [...warbandSeed.equipmentLists, ...sistersSeed.equipmentLists, ...carnivalSeed.equipmentLists, ...skavenSeed.equipmentLists, ...undeadSeed.equipmentLists, ...mercenarySeed.equipmentLists],
+>>>>>>> 328b6e03282942ae3706ee23d2d0604fd9286135
     skillCategories: skillSeed.categories,
     skills: skillSeed.skills,
     specialRules,

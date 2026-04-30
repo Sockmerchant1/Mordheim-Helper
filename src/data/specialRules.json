@@ -259,6 +259,7 @@
     "relatedRuleIds": []
   },
   {
+<<<<<<< HEAD
     "id": "waaagh-magic",
     "name": "Waaagh! Magic",
     "effectSummary": "The Orc Shaman uses the Waaagh! Magic spell list.",
@@ -342,6 +343,8 @@
     "validation": { "selectableAs": "spell", "allowedFighterTypeIds": ["orc-shaman"], "requiredSpecialRuleIds": ["waaagh-magic"] }
   },
   {
+=======
+>>>>>>> 328b6e03282942ae3706ee23d2d0604fd9286135
     "id": "necromancy",
     "name": "Necromancy",
     "effectSummary": "The Necromancer uses the Necromancy spell list and may learn spells as described by the core magic rules.",
@@ -563,6 +566,7 @@
     "relatedRuleIds": []
   },
   {
+<<<<<<< HEAD
     "id": "animosity",
     "name": "Animosity",
     "effectSummary": "At the start of the Orc player's turn, Orc and Goblin henchmen that are not in hand-to-hand combat test for squabbling. On a failed test they may fight, shoot at or insult allies, or rush toward the enemy.",
@@ -750,6 +754,8 @@
     "relatedRuleIds": []
   },
   {
+=======
+>>>>>>> 328b6e03282942ae3706ee23d2d0604fd9286135
     "id": "undead-immune-to-psychology",
     "name": "Immune to Psychology",
     "effectSummary": "The model is not affected by psychology such as Fear and never leaves combat because of psychology.",

@@ -20,8 +20,12 @@ const warbandSeeds = [
   warbandSeedSchema.parse(sistersOfSigmar),
   warbandSeedSchema.parse(carnivalOfChaos),
   warbandSeedSchema.parse(skaven),
+<<<<<<< HEAD
   warbandSeedSchema.parse(undead),
   warbandSeedSchema.parse(orcMob)
+=======
+  warbandSeedSchema.parse(undead)
+>>>>>>> 328b6e03282942ae3706ee23d2d0604fd9286135
 ];
 const warbandSeedCollections = [warbandSeedCollectionSchema.parse(mercenaries)];
 const parsedHiredSwords = hiredSwordSchema.array().parse(hiredSwords);
