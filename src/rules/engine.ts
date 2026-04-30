@@ -206,6 +206,22 @@ export function validateRoster(roster: Roster, rulesDb: RulesDb): ValidationIssu
     if (fighterType.maxCount !== null && count > fighterType.maxCount) {
       issues.push(issue("error", "FIGHTER_MAX_COUNT", `${fighterType.name} maximum is ${fighterType.maxCount}, but the roster has ${count}.`, "The warband list defines this maximum.", undefined, "members", fighterType.source, `Remove excess ${fighterType.name} models.`));
     }
+    for (const ratioConstraint of fighterType.validation.maxCountPerFighterTypeIds) {
+      const baseCount = ratioConstraint.fighterTypeIds.reduce((total, fighterTypeId) => total + countFighterType(roster, fighterTypeId, rulesDb), 0);
+      const allowedCount = Math.floor(baseCount * ratioConstraint.multiplier);
+      if (count > allowedCount) {
+        issues.push(issue(
+          "error",
+          "FIGHTER_RATIO_LIMIT",
+          `${fighterType.name} maximum is ${allowedCount}, but the roster has ${count}.`,
+          ratioConstraint.description ?? "This fighter type is limited by the number of another fighter type in the warband.",
+          undefined,
+          "members",
+          fighterType.source,
+          `Add supporting warriors or remove excess ${fighterType.name} models.`
+        ));
+      }
+    }
   }
 
   for (const member of activeMembers) {
@@ -252,15 +268,23 @@ export function validateRoster(roster: Roster, rulesDb: RulesDb): ValidationIssu
       fighterType.validation.requiredOneOfEquipmentItemIds.length > 0 &&
       !fighterType.validation.requiredOneOfEquipmentItemIds.some((itemId) => member.equipment.includes(itemId))
     ) {
+      const requiredItems = fighterType.validation.requiredOneOfEquipmentItemIds
+        .map((itemId) => findEquipment(rulesDb, itemId))
+        .filter((item): item is EquipmentItem => Boolean(item));
+      const isNurgleBlessing = requiredItems.some((item) => item.validation.costGroupId === "nurgle-blessing");
+      const requiredLabel = isNurgleBlessing ? "at least one Blessing of Nurgle" : "a required option";
+      const availableOptions = requiredItems.map((item) => item.name).join(", ");
       issues.push(issue(
         "error",
         "REQUIRED_EQUIPMENT_OPTION",
-        `${fighterType.name} must choose a required option.`,
-        "This fighter type has a rules-data requirement to include at least one item from a specific list.",
+        `${fighterType.name} must choose ${requiredLabel}.`,
+        availableOptions
+          ? `Choose one of: ${availableOptions}.`
+          : "This fighter type has a rules-data requirement to include at least one item from a specific list.",
         member.id,
         "equipment",
         fighterType.source,
-        "Add one of the required options."
+        isNurgleBlessing ? "Add a Blessing of Nurgle." : "Add one of the required options."
       ));
     }
 
@@ -454,6 +478,19 @@ function validateWeaponAndArmourLimits(member: RosterMember, rulesDb: RulesDb, i
       !exclusiveWeapon;
     if (exclusiveWeapon && weaponItems.some((item) => item.id !== exclusiveWeapon.id)) {
       issues.push(issue("error", "CANNOT_COMBINE_WEAPONS", `${exclusiveWeapon.name} cannot be combined with other weapons.`, "This weapon is marked as requiring exclusive use in its rules metadata.", member.id, "equipment", sourceForEquipment(exclusiveWeapon), "Remove the other weapons from this fighter."));
+    }
+    for (const item of items) {
+      const missingRequiredItem = item.validation.requiredEquipmentItemIds.find((requiredId) => !equipment.includes(requiredId));
+      if (missingRequiredItem) {
+        issues.push(issue("error", "MISSING_REQUIRED_EQUIPMENT", `${item.name} requires ${findEquipment(rulesDb, missingRequiredItem)?.name ?? missingRequiredItem}.`, "This item has a paired equipment requirement in rules metadata.", member.id, "equipment", sourceForEquipment(item), "Add the required item or remove this item."));
+      }
+      if (item.validation.disallowsOtherEquipment) {
+        const allowedCompanions = new Set([item.id, ...item.validation.requiredEquipmentItemIds]);
+        const blockedCompanion = equipment.find((itemId) => !allowedCompanions.has(itemId));
+        if (blockedCompanion) {
+          issues.push(issue("error", "CANNOT_COMBINE_EQUIPMENT", `${item.name} cannot be combined with ${findEquipment(rulesDb, blockedCompanion)?.name ?? blockedCompanion}.`, "This item is marked as excluding other equipment in rules metadata.", member.id, "equipment", sourceForEquipment(item), "Remove the other equipment from this fighter."));
+        }
+      }
     }
     if (counts.closeCombat > 2 && !tailFightingAllowsExtraWeapon) {
       issues.push(issue("error", "TOO_MANY_CLOSE_COMBAT_WEAPONS", `This fighter${label} has too many close combat weapons.`, "A warrior may carry up to two close combat weapons in addition to the free dagger.", member.id, "equipment", source, "Remove a close combat weapon."));

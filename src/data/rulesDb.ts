@@ -6,8 +6,10 @@ import sourceDocuments from "./sources.json";
 import specialRules from "./specialRules.json";
 import carnivalOfChaos from "./warbands/carnival-of-chaos.json";
 import mercenaries from "./warbands/mercenaries.json";
+import orcMob from "./warbands/orc-mob.json";
 import sistersOfSigmar from "./warbands/sisters-of-sigmar.json";
 import skaven from "./warbands/skaven.json";
+import undead from "./warbands/undead.json";
 import witchHunters from "./warbands/witch-hunters.json";
 import warbandIndexSeed from "./warbandIndex.json";
 import { hiredSwordSchema, rulesDbSchema, warbandSeedCollectionSchema, warbandSeedSchema } from "../rules/schemas";
@@ -17,7 +19,9 @@ const warbandSeeds = [
   warbandSeedSchema.parse(witchHunters),
   warbandSeedSchema.parse(sistersOfSigmar),
   warbandSeedSchema.parse(carnivalOfChaos),
-  warbandSeedSchema.parse(skaven)
+  warbandSeedSchema.parse(skaven),
+  warbandSeedSchema.parse(undead),
+  warbandSeedSchema.parse(orcMob)
 ];
 const warbandSeedCollections = [warbandSeedCollectionSchema.parse(mercenaries)];
 const parsedHiredSwords = hiredSwordSchema.array().parse(hiredSwords);
@@ -44,7 +48,8 @@ const hiredSwordFighterTypes: FighterType[] = parsedHiredSwords
     notes: [hiredSword.effectSummary, hiredSword.availabilitySummary, hiredSword.notes].filter(Boolean).join(" "),
     validation: {
       requiredOneOfEquipmentItemIds: [],
-      warbandMaxWarriorsBonus: 0
+      warbandMaxWarriorsBonus: 0,
+      maxCountPerFighterTypeIds: []
     },
     source: {
       sourceDocumentId: hiredSword.sourceDocumentId,

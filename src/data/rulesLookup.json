@@ -527,31 +527,44 @@
     "id": "battle-hidden",
     "name": "Hidden",
     "category": "misc",
-    "text": "Temporary battle status used by Play Mode. This marker is table state only and is cleared when battle state is reset.",
-    "tags": ["battle state", "play mode"],
+    "text": "A hidden warrior cannot be seen, shot at or charged while hidden. He may remain hidden while behind suitable cover. If he shoots, casts a spell, moves so he can be seen, or an enemy gets within its Initiative distance in inches, he is revealed and the Hidden marker is removed. A model that ran, fled, was stunned or charged cannot hide that turn.",
+    "source": "The New Mordheimer: Movement",
+    "sourceUrl": "https://mordheimer.net/docs/rules/movement",
+    "page": "Hiding",
+    "tags": ["battle state", "play mode", "hiding", "movement"],
     "aliases": ["hide"]
   },
   {
     "id": "battle-knocked-down",
     "name": "Knocked Down",
     "category": "misc",
-    "text": "Temporary battle status used by Play Mode. Rule text not available yet. Add this rule to the rules data file.",
-    "tags": ["battle state", "play mode"],
+    "text": "A knocked down warrior may crawl 2 inches in the movement phase but may not fight, shoot or cast spells. In combat he cannot strike back. At the start of his next turn he may stand up; that turn he moves at half rate, may shoot and cast spells, cannot charge or run, and if engaged in combat he strikes last.",
+    "source": "The New Mordheimer: Wounds & Injuries",
+    "sourceUrl": "https://mordheimer.net/docs/rules/wounds-and-injuries",
+    "page": "Knocked down",
+    "tags": ["battle state", "play mode", "injury", "recovery"],
     "aliases": ["down"]
   },
   {
     "id": "battle-stunned",
     "name": "Stunned",
     "category": "misc",
-    "text": "Temporary battle status used by Play Mode. Rule text not available yet. Add this rule to the rules data file.",
-    "tags": ["battle state", "play mode"]
+    "text": "A stunned warrior may do nothing at all. In the next recovery phase, turn the model face up and treat it as knocked down.",
+    "source": "The New Mordheimer: Wounds & Injuries",
+    "sourceUrl": "https://mordheimer.net/docs/rules/wounds-and-injuries",
+    "page": "Stunned",
+    "tags": ["battle state", "play mode", "injury", "recovery"],
+    "aliases": ["stun"]
   },
   {
     "id": "battle-out-of-action",
     "name": "Out of Action",
     "category": "misc",
-    "text": "Temporary battle status used by Play Mode. Fighters marked Out of Action are automatically copied into the After Battle serious injury step.",
-    "tags": ["battle state", "play mode", "after battle"],
+    "text": "The warrior is out of the game and is removed from the tabletop. It takes no further part in this battle. After the battle, resolve whether the warrior survives and whether it suffers serious lasting injuries. Play Mode automatically carries this fighter into the After Battle serious injury step.",
+    "source": "The New Mordheimer: Wounds & Injuries",
+    "sourceUrl": "https://mordheimer.net/docs/rules/wounds-and-injuries",
+    "page": "Out of action",
+    "tags": ["battle state", "play mode", "after battle", "injury"],
     "aliases": ["ooa"]
   },
   {

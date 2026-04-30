@@ -34,6 +34,11 @@
       "id": "skaven-special",
       "name": "Skaven Special",
       "skillIds": ["black-hunger", "tail-fighting", "wall-runner", "infiltration", "art-of-silent-death"]
+    },
+    {
+      "id": "orc-special",
+      "name": "Orc Special",
+      "skillIds": ["ard-ead", "waaagh-charge", "ere-we-go", "da-cunnin-plan", "well-ard", "eadbasher"]
     }
   ],
   "skills": [
@@ -304,6 +309,76 @@
       "sourceUrl": "https://broheim.net/downloads/warbands/official/Skaven.pdf",
       "pageRef": "Skaven p. 30",
       "relatedRuleIds": ["fighting-claws-pair"]
+    },
+    {
+      "id": "ard-ead",
+      "name": "'Ard Ead",
+      "categoryId": "orc-special",
+      "effectSummary": "The Orc has a 3+ save to treat stunned as knocked down instead; with a helmet this becomes 2+ and replaces the normal helmet rule.",
+      "restrictions": "Orc heroes with access to the Orc Special skill list.",
+      "sourceDocumentId": "mhr-orc-mob",
+      "sourceUrl": "https://broheim.net/downloads/warbands/official/Orc%20Mob.pdf",
+      "pageRef": "Orc Mob p. 13",
+      "relatedRuleIds": ["battle-stunned", "battle-knocked-down"]
+    },
+    {
+      "id": "waaagh-charge",
+      "name": "Waaagh!",
+      "categoryId": "orc-special",
+      "effectSummary": "The Orc may add +D3 inches to his charge range.",
+      "restrictions": "Orc heroes with access to the Orc Special skill list.",
+      "sourceDocumentId": "mhr-orc-mob",
+      "sourceUrl": "https://broheim.net/downloads/warbands/official/Orc%20Mob.pdf",
+      "pageRef": "Orc Mob p. 13",
+      "relatedRuleIds": []
+    },
+    {
+      "id": "ere-we-go",
+      "name": "'Ere We Go!",
+      "categoryId": "orc-special",
+      "effectSummary": "The Orc may ignore Fear and Terror tests when charging.",
+      "restrictions": "Orc heroes with access to the Orc Special skill list.",
+      "sourceDocumentId": "mhr-orc-mob",
+      "sourceUrl": "https://broheim.net/downloads/warbands/official/Orc%20Mob.pdf",
+      "pageRef": "Orc Mob p. 13",
+      "relatedRuleIds": ["fear"]
+    },
+    {
+      "id": "da-cunnin-plan",
+      "name": "Da Cunnin' Plan",
+      "categoryId": "orc-special",
+      "effectSummary": "The warband may re-roll failed Rout tests while the Boss is not out of action.",
+      "restrictions": "Orc Boss only.",
+      "sourceDocumentId": "mhr-orc-mob",
+      "sourceUrl": "https://broheim.net/downloads/warbands/official/Orc%20Mob.pdf",
+      "pageRef": "Orc Mob p. 13",
+      "relatedRuleIds": ["leader"],
+      "validation": {
+        "allowedFighterTypeIds": ["orc-boss"],
+        "requiredSpecialRuleIds": []
+      }
+    },
+    {
+      "id": "well-ard",
+      "name": "Well 'Ard",
+      "categoryId": "orc-special",
+      "effectSummary": "The Orc adds +1 to any armour saves.",
+      "restrictions": "Orc heroes with access to the Orc Special skill list.",
+      "sourceDocumentId": "mhr-orc-mob",
+      "sourceUrl": "https://broheim.net/downloads/warbands/official/Orc%20Mob.pdf",
+      "pageRef": "Orc Mob p. 13",
+      "relatedRuleIds": []
+    },
+    {
+      "id": "eadbasher",
+      "name": "'Eadbasher",
+      "categoryId": "orc-special",
+      "effectSummary": "Knocked down results caused by the Orc in hand-to-hand combat count as stunned instead.",
+      "restrictions": "Orc heroes with access to the Orc Special skill list.",
+      "sourceDocumentId": "mhr-orc-mob",
+      "sourceUrl": "https://broheim.net/downloads/warbands/official/Orc%20Mob.pdf",
+      "pageRef": "Orc Mob p. 13",
+      "relatedRuleIds": ["battle-knocked-down", "battle-stunned"]
     }
   ]
 }

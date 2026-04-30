@@ -3,5 +3,6 @@ dist/
 .local/
 .tools/
 .npm-cache/
+.netlify/
 playwright-report/
 test-results/

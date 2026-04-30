@@ -621,5 +621,44 @@
     "pageRef": "Empire in Flames p. 66",
     "restrictions": "Tainted Ones only, bought at recruitment. Second and later Blessings cost double.",
     "validation": { "closeCombatSlots": 0, "missileSlots": 0, "isFreeFirstPerWarrior": false, "isBodyArmour": false, "isShield": false, "isHelmet": false, "isBuckler": false, "nonRepeatable": true, "grantsWeaponUse": [], "costGroupId": "nurgle-blessing", "costGroupSubsequentMultiplier": 2 }
+  },
+  {
+    "id": "squig-prodder",
+    "name": "Squig Prodder",
+    "category": "close_combat",
+    "cost": 15,
+    "rulesSummary": "Goblin-only spear-like weapon. Cave Squigs respect a prodder within the larger listed Minderz range.",
+    "specialRuleIds": ["squig-prodder-rule"],
+    "sourceDocumentId": "mhr-orc-mob",
+    "sourceUrl": "https://broheim.net/downloads/warbands/official/Orc%20Mob.pdf",
+    "pageRef": "Orc Mob p. 12",
+    "restrictions": "Common, Goblins only.",
+    "validation": { "closeCombatSlots": 1, "missileSlots": 0, "isFreeFirstPerWarrior": false, "isBodyArmour": false, "isShield": false, "isHelmet": false, "isBuckler": false, "nonRepeatable": false, "grantsWeaponUse": [] }
+  },
+  {
+    "id": "mad-cap-mushrooms",
+    "name": "Mad Cap Mushrooms",
+    "category": "drug",
+    "cost": 25,
+    "rulesSummary": "Goblin drug required to use a Ball and Chain; a Goblin may take the mushrooms at the start of any turn.",
+    "specialRuleIds": ["mad-cap-mushrooms-rule"],
+    "sourceDocumentId": "mhr-orc-mob",
+    "sourceUrl": "https://broheim.net/downloads/warbands/official/Orc%20Mob.pdf",
+    "pageRef": "Orc Mob p. 12",
+    "restrictions": "Common for Orc warbands that include Goblins.",
+    "validation": { "closeCombatSlots": 0, "missileSlots": 0, "isFreeFirstPerWarrior": false, "isBodyArmour": false, "isShield": false, "isHelmet": false, "isBuckler": false, "nonRepeatable": true, "grantsWeaponUse": [] }
+  },
+  {
+    "id": "ball-and-chain",
+    "name": "Ball and Chain",
+    "category": "close_combat",
+    "cost": 15,
+    "rulesSummary": "Goblin-only heavy weapon used with Mad Cap Mushrooms. It strikes at user Strength +2, ignores armour saves and can cause multiple wounds, but moves randomly and is dangerous to the wielder.",
+    "specialRuleIds": ["ball-and-chain-incredible-force", "ball-and-chain-random", "ball-and-chain-cumbersome", "ball-and-chain-unwieldy"],
+    "sourceDocumentId": "mhr-orc-mob",
+    "sourceUrl": "https://broheim.net/downloads/warbands/official/Orc%20Mob.pdf",
+    "pageRef": "Orc Mob p. 12",
+    "restrictions": "Common, Goblins only. Requires Mad Cap Mushrooms.",
+    "validation": { "closeCombatSlots": 2, "missileSlots": 0, "isFreeFirstPerWarrior": false, "isBodyArmour": false, "isShield": false, "isHelmet": false, "isBuckler": false, "nonRepeatable": true, "grantsWeaponUse": [], "disallowsOtherWeapons": true, "disallowsOtherEquipment": true, "requiredEquipmentItemIds": ["mad-cap-mushrooms"] }
   }
 ]

@@ -70,7 +70,7 @@
     "sourceUrl": "https://mordheimer.net/docs/campaigns/hired-swords/grade-1a",
     "pageRef": "Halfling Scout",
     "implementationStatus": "implemented",
-    "blockedWarbandTypeIds": ["skaven"],
+    "blockedWarbandTypeIds": ["skaven", "orc-mob"],
     "ratingOverride": 5,
     "startingExperience": 0,
     "profile": { "M": 4, "WS": 2, "BS": 4, "S": 2, "T": 2, "W": 1, "I": 4, "A": 1, "Ld": 8 },

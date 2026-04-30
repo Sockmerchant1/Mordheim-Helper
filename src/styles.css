@@ -536,6 +536,18 @@ button.blocked,
   padding-top: 0.75rem;
 }
 
+.required-option-picker {
+  border: 1px solid #d7cbbd;
+  border-radius: 8px;
+  display: grid;
+  gap: 0.65rem;
+  padding: 0.75rem;
+}
+
+.required-option-picker h3 {
+  margin: 0 0 0.2rem;
+}
+
 .equipment-list {
   display: grid;
   gap: 0.5rem;

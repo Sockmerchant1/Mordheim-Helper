@@ -83,6 +83,35 @@ import {
   tooManySkavenWarriors,
   validSkaven
 } from "../tests/fixtures/skavenRosters.ts";
+import {
+  direWolfWithWeapon,
+  ghoulWithArmour,
+  invalidUndeadSkill,
+  undeadNoVampire,
+  undeadTooManyDireWolves,
+  undeadTooManyDregs,
+  undeadTooManyWarriors,
+  undeadTwoVampires,
+  validUndead,
+  zombieWithWeapon
+} from "../tests/fixtures/undeadRosters.ts";
+import {
+  ballAndChainWithShield,
+  ballAndChainWithoutMushrooms,
+  caveSquigWithWeapon,
+  goblinWithBallAndChain,
+  invalidOrcSkill,
+  orcNoBoss,
+  orcTwoBosses,
+  shamanWithArmour,
+  tooManyCaveSquigsForGoblins,
+  tooManyCaveSquigsMaximum,
+  tooManyGoblinWarriorsForOrcs,
+  tooManyOrcBigUns,
+  tooManyOrcShamans,
+  tooManyTrolls,
+  validOrcMob
+} from "../tests/fixtures/orcRosters.ts";
 
 const rulesDb = await loadRulesDb();
 
@@ -304,6 +333,92 @@ const adeptSpells = getAllowedSpecialRules(skavenRoster.members[0], skavenRoster
 assert.equal(sorcererSpells.find((option) => option.item.id === "horned-rat-warpfire")?.allowed, true);
 assert.equal(adeptSpells.find((option) => option.item.id === "horned-rat-warpfire")?.allowed, false);
 
+assert.ok(allowedOfficialWarbands.includes("undead"));
+assert.deepEqual(errorCodes(validUndead()), []);
+assert.equal(calculateRosterCost(validUndead(), rulesDb), 310);
+assert.equal(calculateWarbandRating(validUndead(), rulesDb), 68);
+assert.ok(codes(undeadNoVampire()).includes("REQUIRED_LEADER"));
+assert.ok(codes(undeadTwoVampires()).includes("REQUIRED_LEADER"));
+assert.ok(codes(undeadTooManyWarriors()).includes("MAX_WARRIORS"));
+assert.ok(codes(undeadTooManyDregs()).includes("FIGHTER_MAX_COUNT"));
+assert.ok(codes(undeadTooManyDireWolves()).includes("FIGHTER_MAX_COUNT"));
+assert.ok(codes(zombieWithWeapon()).includes("INVALID_EQUIPMENT"));
+assert.ok(codes(ghoulWithArmour()).includes("INVALID_EQUIPMENT"));
+assert.ok(codes(direWolfWithWeapon()).includes("INVALID_EQUIPMENT"));
+assert.ok(codes(invalidUndeadSkill()).includes("INVALID_SKILL"));
+
+const undeadRoster = validUndead();
+const vampireOptions = getAllowedEquipment(undeadRoster.members[0], undeadRoster, rulesDb);
+const zombieOptions = getAllowedEquipment(undeadRoster.members[3], undeadRoster, rulesDb);
+assert.equal(vampireOptions.find((option) => option.item.id === "halberd")?.allowed, true);
+assert.equal(vampireOptions.find((option) => option.item.id === "pistol")?.allowed, false);
+assert.equal(zombieOptions.find((option) => option.item.id === "dagger")?.allowed, false);
+
+const vampireSkills = getAllowedSkills(undeadRoster.members[0], undeadRoster, rulesDb);
+const necromancerSkills = getAllowedSkills(undeadRoster.members[1], undeadRoster, rulesDb);
+const dregSkills = getAllowedSkills(undeadRoster.members[2], undeadRoster, rulesDb);
+assert.equal(vampireSkills.find((option) => option.item.id === "mighty-blow")?.allowed, true);
+assert.equal(vampireSkills.find((option) => option.item.id === "quick-shot")?.allowed, false);
+assert.equal(necromancerSkills.find((option) => option.item.id === "sorcery")?.allowed, true);
+assert.equal(necromancerSkills.find((option) => option.item.id === "mighty-blow")?.allowed, false);
+assert.equal(dregSkills.find((option) => option.item.id === "mighty-blow")?.allowed, true);
+assert.equal(dregSkills.find((option) => option.item.id === "step-aside")?.allowed, false);
+assert.equal(rulesDb.specialRules.find((rule) => rule.id === "necromancy")?.sourceDocumentId, "mordheim-core-rules");
+assert.ok(rulesDb.specialRules.find((rule) => rule.id === "necromancy")?.relatedRuleIds.includes("necromancy-lifestealer"));
+assert.equal(rulesDb.specialRules.find((rule) => rule.id === "no-pain")?.sourceDocumentId, "mhr-undead");
+const necromancySpells = getAllowedSpecialRules(undeadRoster.members[1], undeadRoster, rulesDb);
+const vampireSpells = getAllowedSpecialRules(undeadRoster.members[0], undeadRoster, rulesDb);
+assert.equal(necromancySpells.find((option) => option.item.id === "necromancy-lifestealer")?.allowed, true);
+assert.equal(vampireSpells.find((option) => option.item.id === "necromancy-lifestealer")?.allowed, false);
+
+assert.ok(allowedOfficialWarbands.includes("orc-mob"));
+assert.deepEqual(errorCodes(validOrcMob()), []);
+assert.equal(calculateRosterCost(validOrcMob(), rulesDb), 290);
+assert.equal(calculateWarbandRating(validOrcMob(), rulesDb), 85);
+assert.ok(codes(orcNoBoss()).includes("REQUIRED_LEADER"));
+assert.ok(codes(orcTwoBosses()).includes("REQUIRED_LEADER"));
+assert.ok(codes(tooManyOrcShamans()).includes("FIGHTER_MAX_COUNT"));
+assert.ok(codes(tooManyOrcBigUns()).includes("FIGHTER_MAX_COUNT"));
+assert.ok(codes(tooManyGoblinWarriorsForOrcs()).includes("FIGHTER_RATIO_LIMIT"));
+assert.ok(codes(tooManyCaveSquigsForGoblins()).includes("FIGHTER_RATIO_LIMIT"));
+assert.ok(codes(tooManyCaveSquigsMaximum()).includes("FIGHTER_MAX_COUNT"));
+assert.ok(codes(tooManyTrolls()).includes("FIGHTER_MAX_COUNT"));
+assert.ok(codes(shamanWithArmour()).includes("INVALID_EQUIPMENT"));
+assert.ok(codes(caveSquigWithWeapon()).includes("INVALID_EQUIPMENT"));
+assert.ok(codes(ballAndChainWithoutMushrooms()).includes("MISSING_REQUIRED_EQUIPMENT"));
+assert.ok(codes(ballAndChainWithShield()).includes("CANNOT_COMBINE_EQUIPMENT"));
+assert.deepEqual(errorCodes(goblinWithBallAndChain()), []);
+assert.ok(codes(invalidOrcSkill()).includes("INVALID_SKILL"));
+
+const orcRoster = validOrcMob();
+const bossOptions = getAllowedEquipment(orcRoster.members[0], orcRoster, rulesDb);
+const shamanOptions = getAllowedEquipment(orcRoster.members[1], orcRoster, rulesDb);
+const goblinOptions = getAllowedEquipment(orcRoster.members[4], orcRoster, rulesDb);
+const goblinWithMushroomsOptions = getAllowedEquipment({ ...orcRoster.members[4], equipment: ["mad-cap-mushrooms"] }, orcRoster, rulesDb);
+const squigOptions = getAllowedEquipment(orcRoster.members[5], orcRoster, rulesDb);
+assert.equal(bossOptions.find((option) => option.item.id === "crossbow")?.allowed, true);
+assert.equal(shamanOptions.find((option) => option.item.id === "light-armour")?.allowed, false);
+assert.equal(goblinOptions.find((option) => option.item.id === "mad-cap-mushrooms")?.allowed, true);
+assert.equal(goblinOptions.find((option) => option.item.id === "ball-and-chain")?.allowed, false);
+assert.equal(goblinWithMushroomsOptions.find((option) => option.item.id === "ball-and-chain")?.allowed, true);
+assert.equal(squigOptions.find((option) => option.item.id === "dagger")?.allowed, false);
+
+const bossSkills = getAllowedSkills(orcRoster.members[0], orcRoster, rulesDb);
+const shamanSkills = getAllowedSkills(orcRoster.members[1], orcRoster, rulesDb);
+const bigUnSkills = getAllowedSkills(orcRoster.members[2], orcRoster, rulesDb);
+assert.equal(bossSkills.find((option) => option.item.id === "da-cunnin-plan")?.allowed, true);
+assert.equal(shamanSkills.find((option) => option.item.id === "sorcery")?.allowed, false);
+assert.equal(shamanSkills.find((option) => option.item.id === "waaagh-charge")?.allowed, true);
+assert.equal(bigUnSkills.find((option) => option.item.id === "da-cunnin-plan")?.allowed, false);
+assert.equal(bigUnSkills.find((option) => option.item.id === "eadbasher")?.allowed, true);
+assert.equal(rulesDb.specialRules.find((rule) => rule.id === "waaagh-magic")?.sourceDocumentId, "mhr-orc-mob");
+assert.ok(rulesDb.specialRules.find((rule) => rule.id === "waaagh-magic")?.relatedRuleIds.includes("waaagh-zzap"));
+assert.equal(rulesDb.skills.find((skill) => skill.id === "eadbasher")?.sourceDocumentId, "mhr-orc-mob");
+const shamanSpells = getAllowedSpecialRules(orcRoster.members[1], orcRoster, rulesDb);
+const bossSpells = getAllowedSpecialRules(orcRoster.members[0], orcRoster, rulesDb);
+assert.equal(shamanSpells.find((option) => option.item.id === "waaagh-zzap")?.allowed, true);
+assert.equal(bossSpells.find((option) => option.item.id === "waaagh-zzap")?.allowed, false);
+
 console.log("Rules engine verification passed.");
 
 function codes(roster) {
@@ -317,7 +432,7 @@ function errorCodes(roster) {
 }
 
 async function loadRulesDb() {
-  const [sourceDocuments, equipmentItems, skillSeed, specialRules, hiredSwords, ruleReferences, witchHunters, mercenaries, sisters, carnival, skaven] = await Promise.all([
+  const [sourceDocuments, equipmentItems, skillSeed, specialRules, hiredSwords, ruleReferences, witchHunters, mercenaries, sisters, carnival, skaven, undead, orcMob] = await Promise.all([
     readJson("../src/data/sources.json"),
     readJson("../src/data/equipment.json"),
     readJson("../src/data/skills.json"),
@@ -328,19 +443,23 @@ async function loadRulesDb() {
     readJson("../src/data/warbands/mercenaries.json"),
     readJson("../src/data/warbands/sisters-of-sigmar.json"),
     readJson("../src/data/warbands/carnival-of-chaos.json"),
-    readJson("../src/data/warbands/skaven.json")
+    readJson("../src/data/warbands/skaven.json"),
+    readJson("../src/data/warbands/undead.json"),
+    readJson("../src/data/warbands/orc-mob.json")
   ]);
   const warbandSeed = warbandSeedSchema.parse(witchHunters);
   const sistersSeed = warbandSeedSchema.parse(sisters);
   const carnivalSeed = warbandSeedSchema.parse(carnival);
   const skavenSeed = warbandSeedSchema.parse(skaven);
+  const undeadSeed = warbandSeedSchema.parse(undead);
+  const orcMobSeed = warbandSeedSchema.parse(orcMob);
   const mercenarySeed = warbandSeedCollectionSchema.parse(mercenaries);
   return rulesDbSchema.parse({
     sourceDocuments,
-    warbandTypes: [warbandSeed.warbandType, sistersSeed.warbandType, carnivalSeed.warbandType, skavenSeed.warbandType, ...mercenarySeed.warbandTypes],
-    fighterTypes: [...warbandSeed.fighterTypes, ...sistersSeed.fighterTypes, ...carnivalSeed.fighterTypes, ...skavenSeed.fighterTypes, ...mercenarySeed.fighterTypes],
+    warbandTypes: [warbandSeed.warbandType, sistersSeed.warbandType, carnivalSeed.warbandType, skavenSeed.warbandType, undeadSeed.warbandType, orcMobSeed.warbandType, ...mercenarySeed.warbandTypes],
+    fighterTypes: [...warbandSeed.fighterTypes, ...sistersSeed.fighterTypes, ...carnivalSeed.fighterTypes, ...skavenSeed.fighterTypes, ...undeadSeed.fighterTypes, ...orcMobSeed.fighterTypes, ...mercenarySeed.fighterTypes],
     equipmentItems,
-    equipmentLists: [...warbandSeed.equipmentLists, ...sistersSeed.equipmentLists, ...carnivalSeed.equipmentLists, ...skavenSeed.equipmentLists, ...mercenarySeed.equipmentLists],
+    equipmentLists: [...warbandSeed.equipmentLists, ...sistersSeed.equipmentLists, ...carnivalSeed.equipmentLists, ...skavenSeed.equipmentLists, ...undeadSeed.equipmentLists, ...orcMobSeed.equipmentLists, ...mercenarySeed.equipmentLists],
     skillCategories: skillSeed.categories,
     skills: skillSeed.skills,
     specialRules,

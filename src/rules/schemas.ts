@@ -75,6 +75,8 @@ export const equipmentValidationSchema = z.object({
   nonRepeatable: z.boolean().default(false),
   grantsWeaponUse: z.array(z.string()).default([]),
   disallowsOtherWeapons: z.boolean().default(false),
+  disallowsOtherEquipment: z.boolean().default(false),
+  requiredEquipmentItemIds: z.array(z.string()).default([]),
   costGroupId: z.string().optional(),
   costGroupSubsequentMultiplier: z.number().default(1)
 });
@@ -90,6 +92,8 @@ const defaultEquipmentValidation = {
   nonRepeatable: false,
   grantsWeaponUse: [],
   disallowsOtherWeapons: false,
+  disallowsOtherEquipment: false,
+  requiredEquipmentItemIds: [],
   costGroupSubsequentMultiplier: 1
 };
 
@@ -194,8 +198,13 @@ export const fighterTypeSchema = z.object({
   notes: z.string().optional(),
   validation: z.object({
     requiredOneOfEquipmentItemIds: z.array(z.string()).default([]),
-    warbandMaxWarriorsBonus: z.number().default(0)
-  }).default({ requiredOneOfEquipmentItemIds: [], warbandMaxWarriorsBonus: 0 }),
+    warbandMaxWarriorsBonus: z.number().default(0),
+    maxCountPerFighterTypeIds: z.array(z.object({
+      fighterTypeIds: z.array(z.string()),
+      multiplier: z.number(),
+      description: z.string().optional()
+    })).default([])
+  }).default({ requiredOneOfEquipmentItemIds: [], warbandMaxWarriorsBonus: 0, maxCountPerFighterTypeIds: [] }),
   source: sourceRefSchema
 });
 

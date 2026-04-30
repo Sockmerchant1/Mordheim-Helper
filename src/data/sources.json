@@ -40,6 +40,22 @@
     "notes": "Official Broheim-hosted Skaven warband PDF from the Mordheim rulebook set."
   },
   {
+    "id": "mhr-undead",
+    "title": "Undead",
+    "url": "https://broheim.net/downloads/warbands/official/Undead.pdf",
+    "type": "warband_pdf",
+    "broheimGrade": "1a",
+    "notes": "Official Broheim-hosted Undead warband PDF from the Mordheim rulebook set."
+  },
+  {
+    "id": "mhr-orc-mob",
+    "title": "Orc Mob",
+    "url": "https://broheim.net/downloads/warbands/official/Orc%20Mob.pdf",
+    "type": "warband_pdf",
+    "broheimGrade": "1a",
+    "notes": "Official Broheim-hosted Orc Mob warband PDF from Mordheim Annual material."
+  },
+  {
     "id": "eif-empire-in-flames",
     "title": "Empire in Flames",
     "url": "https://broheim.net/downloads/rules/Empire%20In%20Flames.pdf",

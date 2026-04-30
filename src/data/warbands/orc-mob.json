@@ -1,0 +1,254 @@
+{
+  "warbandType": {
+    "id": "orc-mob",
+    "name": "Orc Mob",
+    "race": "Orcs & Goblins",
+    "broheimGrade": "1a",
+    "sourceCode": "A02",
+    "sourceDocumentId": "mhr-orc-mob",
+    "sourceUrl": "https://broheim.net/downloads/warbands/official/Orc%20Mob.pdf",
+    "implementationStatus": "tested",
+    "startingGold": 500,
+    "minWarriors": 3,
+    "maxWarriors": 20,
+    "maxHeroes": 5,
+    "leaderFighterTypeId": "orc-boss",
+    "notes": "Official Orc Mob warband. Includes Orc/Goblin ratio limits, Cave Squig minder limits, Waaagh! Magic, Orc special skills and Goblin special equipment."
+  },
+  "fighterTypes": [
+    {
+      "id": "orc-boss",
+      "warbandTypeId": "orc-mob",
+      "name": "Orc Boss",
+      "category": "hero",
+      "minCount": 1,
+      "maxCount": 1,
+      "groupMinSize": null,
+      "groupMaxSize": null,
+      "hireCost": 80,
+      "startingExperience": 20,
+      "profile": { "M": 4, "WS": 4, "BS": 4, "S": 4, "T": 4, "W": 1, "I": 3, "A": 1, "Ld": 8 },
+      "equipmentListIds": ["orc-equipment"],
+      "skillCategoryIds": ["combat", "shooting", "strength", "speed", "orc-special"],
+      "specialRuleIds": ["leader"],
+      "canGainExperience": true,
+      "isLargeCreature": false,
+      "ratingOverride": null,
+      "notes": "Required leader; no more, no less.",
+      "source": {
+        "sourceDocumentId": "mhr-orc-mob",
+        "sourceUrl": "https://broheim.net/downloads/warbands/official/Orc%20Mob.pdf",
+        "pageRef": "Orc Mob p. 10",
+        "label": "Heroes"
+      }
+    },
+    {
+      "id": "orc-shaman",
+      "warbandTypeId": "orc-mob",
+      "name": "Orc Shaman",
+      "category": "hero",
+      "minCount": 0,
+      "maxCount": 1,
+      "groupMinSize": null,
+      "groupMaxSize": null,
+      "hireCost": 40,
+      "startingExperience": 10,
+      "profile": { "M": 4, "WS": 3, "BS": 3, "S": 3, "T": 4, "W": 1, "I": 3, "A": 1, "Ld": 7 },
+      "equipmentListIds": ["orc-shaman-equipment"],
+      "skillCategoryIds": ["strength", "orc-special"],
+      "specialRuleIds": ["spellcaster", "waaagh-magic"],
+      "canGainExperience": true,
+      "isLargeCreature": false,
+      "ratingOverride": null,
+      "notes": "Wizard using Waaagh! Magic. May never wear armour.",
+      "source": {
+        "sourceDocumentId": "mhr-orc-mob",
+        "sourceUrl": "https://broheim.net/downloads/warbands/official/Orc%20Mob.pdf",
+        "pageRef": "Orc Mob p. 10",
+        "label": "Heroes"
+      }
+    },
+    {
+      "id": "orc-big-un",
+      "warbandTypeId": "orc-mob",
+      "name": "Orc Big 'Un",
+      "category": "hero",
+      "minCount": 0,
+      "maxCount": 2,
+      "groupMinSize": null,
+      "groupMaxSize": null,
+      "hireCost": 40,
+      "startingExperience": 15,
+      "profile": { "M": 4, "WS": 4, "BS": 3, "S": 3, "T": 4, "W": 1, "I": 3, "A": 1, "Ld": 7 },
+      "equipmentListIds": ["orc-equipment"],
+      "skillCategoryIds": ["combat", "shooting", "strength", "orc-special"],
+      "specialRuleIds": [],
+      "canGainExperience": true,
+      "isLargeCreature": false,
+      "ratingOverride": null,
+      "notes": "Up to two may be hired.",
+      "source": {
+        "sourceDocumentId": "mhr-orc-mob",
+        "sourceUrl": "https://broheim.net/downloads/warbands/official/Orc%20Mob.pdf",
+        "pageRef": "Orc Mob p. 10",
+        "label": "Heroes"
+      }
+    },
+    {
+      "id": "orc-boy",
+      "warbandTypeId": "orc-mob",
+      "name": "Orc Boy",
+      "category": "henchman",
+      "minCount": 0,
+      "maxCount": null,
+      "groupMinSize": 1,
+      "groupMaxSize": 5,
+      "hireCost": 25,
+      "startingExperience": 0,
+      "profile": { "M": 4, "WS": 3, "BS": 3, "S": 3, "T": 4, "W": 1, "I": 2, "A": 1, "Ld": 7 },
+      "equipmentListIds": ["orc-equipment"],
+      "skillCategoryIds": [],
+      "specialRuleIds": ["animosity"],
+      "canGainExperience": true,
+      "isLargeCreature": false,
+      "ratingOverride": null,
+      "notes": "Bought in groups of 1-5.",
+      "source": {
+        "sourceDocumentId": "mhr-orc-mob",
+        "sourceUrl": "https://broheim.net/downloads/warbands/official/Orc%20Mob.pdf",
+        "pageRef": "Orc Mob p. 11",
+        "label": "Henchmen"
+      }
+    },
+    {
+      "id": "goblin-warrior",
+      "warbandTypeId": "orc-mob",
+      "name": "Goblin Warrior",
+      "category": "henchman",
+      "minCount": 0,
+      "maxCount": null,
+      "groupMinSize": 1,
+      "groupMaxSize": 5,
+      "hireCost": 15,
+      "startingExperience": 0,
+      "profile": { "M": 4, "WS": 2, "BS": 3, "S": 3, "T": 3, "W": 1, "I": 3, "A": 1, "Ld": 5 },
+      "equipmentListIds": ["goblin-equipment"],
+      "skillCategoryIds": [],
+      "specialRuleIds": ["animosity", "not-orcs", "runts"],
+      "canGainExperience": true,
+      "isLargeCreature": false,
+      "ratingOverride": null,
+      "notes": "May not exceed two Goblins for each Orc in the warband.",
+      "validation": {
+        "maxCountPerFighterTypeIds": [
+          {
+            "fighterTypeIds": ["orc-boss", "orc-shaman", "orc-big-un", "orc-boy"],
+            "multiplier": 2,
+            "description": "Orc Mobs may not have more than two Goblin Warriors for each Orc, including Orc Heroes."
+          }
+        ]
+      },
+      "source": {
+        "sourceDocumentId": "mhr-orc-mob",
+        "sourceUrl": "https://broheim.net/downloads/warbands/official/Orc%20Mob.pdf",
+        "pageRef": "Orc Mob p. 11",
+        "label": "Henchmen"
+      }
+    },
+    {
+      "id": "cave-squig",
+      "warbandTypeId": "orc-mob",
+      "name": "Cave Squig",
+      "category": "henchman",
+      "minCount": 0,
+      "maxCount": 5,
+      "groupMinSize": 1,
+      "groupMaxSize": 5,
+      "hireCost": 15,
+      "startingExperience": 0,
+      "profile": { "M": 0, "WS": 4, "BS": 0, "S": 4, "T": 3, "W": 1, "I": 4, "A": 1, "Ld": 5 },
+      "equipmentListIds": ["orc-no-equipment"],
+      "skillCategoryIds": [],
+      "specialRuleIds": ["squig-movement", "squig-minderz", "not-orcs", "squig-animal"],
+      "canGainExperience": false,
+      "isLargeCreature": false,
+      "ratingOverride": null,
+      "notes": "Movement is 2D6, represented by the Movement special rule. Cave Squigs may never exceed the number of Goblin Warriors.",
+      "validation": {
+        "maxCountPerFighterTypeIds": [
+          {
+            "fighterTypeIds": ["goblin-warrior"],
+            "multiplier": 1,
+            "description": "An Orc Mob may never have more Cave Squigs than Goblin Warriors."
+          }
+        ]
+      },
+      "source": {
+        "sourceDocumentId": "mhr-orc-mob",
+        "sourceUrl": "https://broheim.net/downloads/warbands/official/Orc%20Mob.pdf",
+        "pageRef": "Orc Mob p. 11",
+        "label": "Henchmen"
+      }
+    },
+    {
+      "id": "troll",
+      "warbandTypeId": "orc-mob",
+      "name": "Troll",
+      "category": "henchman",
+      "minCount": 0,
+      "maxCount": 1,
+      "groupMinSize": 1,
+      "groupMaxSize": 1,
+      "hireCost": 200,
+      "startingExperience": 0,
+      "profile": { "M": 6, "WS": 3, "BS": 1, "S": 5, "T": 4, "W": 3, "I": 1, "A": 3, "Ld": 4 },
+      "equipmentListIds": ["orc-no-equipment"],
+      "skillCategoryIds": [],
+      "specialRuleIds": ["fear", "stupidity", "troll-regeneration", "troll-dumb-monster", "troll-always-hungry", "troll-vomit-attack"],
+      "canGainExperience": false,
+      "isLargeCreature": false,
+      "ratingOverride": null,
+      "notes": "Never uses weapons or armour and does not gain experience. Requires after-battle upkeep.",
+      "source": {
+        "sourceDocumentId": "mhr-orc-mob",
+        "sourceUrl": "https://broheim.net/downloads/warbands/official/Orc%20Mob.pdf",
+        "pageRef": "Orc Mob p. 11",
+        "label": "Henchmen"
+      }
+    }
+  ],
+  "equipmentLists": [
+    {
+      "id": "orc-equipment",
+      "name": "Orc Equipment List",
+      "warbandTypeId": "orc-mob",
+      "allowedEquipmentItemIds": ["dagger", "axe", "club", "morning-star", "sword", "double-handed-weapon", "spear", "halberd", "crossbow", "bow", "light-armour", "shield", "helmet"],
+      "appliesToFighterTypeIds": ["orc-boss", "orc-shaman", "orc-big-un", "orc-boy"],
+      "notes": "Orc equipment list from the official PDF."
+    },
+    {
+      "id": "orc-shaman-equipment",
+      "name": "Orc Shaman Equipment List",
+      "warbandTypeId": "orc-mob",
+      "allowedEquipmentItemIds": ["dagger", "axe", "club", "morning-star", "sword", "double-handed-weapon", "spear", "halberd", "crossbow", "bow"],
+      "appliesToFighterTypeIds": ["orc-shaman"],
+      "notes": "Orc equipment list weapons only; Shamans may never wear armour."
+    },
+    {
+      "id": "goblin-equipment",
+      "name": "Goblin Equipment List",
+      "warbandTypeId": "orc-mob",
+      "allowedEquipmentItemIds": ["dagger", "club", "sword", "spear", "short-bow", "shield", "helmet", "squig-prodder", "ball-and-chain", "mad-cap-mushrooms"],
+      "appliesToFighterTypeIds": ["goblin-warrior"],
+      "notes": "Goblin equipment list including Orc Mob special equipment."
+    },
+    {
+      "id": "orc-no-equipment",
+      "name": "Orc Mob No Equipment",
+      "warbandTypeId": "orc-mob",
+      "allowedEquipmentItemIds": [],
+      "appliesToFighterTypeIds": ["cave-squig", "troll"],
+      "notes": "Cave Squigs and Trolls do not use weapons or armour."
+    }
+  ]
+}
